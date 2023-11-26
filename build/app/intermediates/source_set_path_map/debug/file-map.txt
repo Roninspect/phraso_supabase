@@ -1,0 +1,35 @@
+com.example.phrasoo.app-jetified-play-services-base-18.0.1-0 C:\Users\Arman\.gradle\caches\transforms-3\07ce4be41ea2bdb67a70843d86dadbbf\transformed\jetified-play-services-base-18.0.1\res
+com.example.phrasoo.app-jetified-play-services-basement-18.2.0-1 C:\Users\Arman\.gradle\caches\transforms-3\2855ba4045a2b6e8dfef9457d478fa1f\transformed\jetified-play-services-basement-18.2.0\res
+com.example.phrasoo.app-jetified-savedstate-1.1.0-2 C:\Users\Arman\.gradle\caches\transforms-3\311ae4a087bdd28d9f26fa4aceadfbb2\transformed\jetified-savedstate-1.1.0\res
+com.example.phrasoo.app-appcompat-1.3.0-3 C:\Users\Arman\.gradle\caches\transforms-3\59d225b5e559cbe82fe103ecd1e32530\transformed\appcompat-1.3.0\res
+com.example.phrasoo.app-fragment-1.3.4-4 C:\Users\Arman\.gradle\caches\transforms-3\65fbcc96a571e904c8e7ad17f927ae0b\transformed\fragment-1.3.4\res
+com.example.phrasoo.app-lifecycle-runtime-2.3.1-5 C:\Users\Arman\.gradle\caches\transforms-3\688bea3d26f0e2329844e722290647f8\transformed\lifecycle-runtime-2.3.1\res
+com.example.phrasoo.app-webkit-1.7.0-6 C:\Users\Arman\.gradle\caches\transforms-3\68a3b6d692650d57ef89e312ce9a3ea2\transformed\webkit-1.7.0\res
+com.example.phrasoo.app-jetified-window-1.0.0-beta04-7 C:\Users\Arman\.gradle\caches\transforms-3\6bdbce6d724577b6a2ebf443348d3e9e\transformed\jetified-window-1.0.0-beta04\res
+com.example.phrasoo.app-lifecycle-viewmodel-2.3.1-8 C:\Users\Arman\.gradle\caches\transforms-3\7ff12b4af601edb557ad52db27b006b4\transformed\lifecycle-viewmodel-2.3.1\res
+com.example.phrasoo.app-browser-1.5.0-9 C:\Users\Arman\.gradle\caches\transforms-3\8f9734252a3ea98818fde243f4516436\transformed\browser-1.5.0\res
+com.example.phrasoo.app-jetified-appauth-0.11.1-10 C:\Users\Arman\.gradle\caches\transforms-3\9278039c73421f4a2d27ba852a75b948\transformed\jetified-appauth-0.11.1\res
+com.example.phrasoo.app-jetified-window-java-1.0.0-beta04-11 C:\Users\Arman\.gradle\caches\transforms-3\96615036bc18d0590c9d7704c27c289a\transformed\jetified-window-java-1.0.0-beta04\res
+com.example.phrasoo.app-jetified-appcompat-resources-1.3.0-12 C:\Users\Arman\.gradle\caches\transforms-3\a26a09f1f4bd9ec507f445fa5960c133\transformed\jetified-appcompat-resources-1.3.0\res
+com.example.phrasoo.app-core-1.10.1-13 C:\Users\Arman\.gradle\caches\transforms-3\ab26447d9623e08a0e883bd959f2fa64\transformed\core-1.10.1\res
+com.example.phrasoo.app-jetified-play-services-auth-20.7.0-14 C:\Users\Arman\.gradle\caches\transforms-3\d3ad832b2a2b6ff9f72486388181081b\transformed\jetified-play-services-auth-20.7.0\res
+com.example.phrasoo.app-jetified-annotation-experimental-1.3.0-15 C:\Users\Arman\.gradle\caches\transforms-3\d68a5df622e8fceda97e3c12385104cb\transformed\jetified-annotation-experimental-1.3.0\res
+com.example.phrasoo.app-jetified-core-ktx-1.10.1-16 C:\Users\Arman\.gradle\caches\transforms-3\f177270396aaec6947c894a0ebbf39f5\transformed\jetified-core-ktx-1.10.1\res
+com.example.phrasoo.app-debug-17 G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\debug\res
+com.example.phrasoo.app-main-18 G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\main\res
+com.example.phrasoo.app-pngs-19 G:\Flutter projects\phraso_supabse\phraso\phraso\build\app\generated\res\pngs\debug
+com.example.phrasoo.app-resValues-20 G:\Flutter projects\phraso_supabse\phraso\phraso\build\app\generated\res\resValues\debug
+com.example.phrasoo.app-rs-21 G:\Flutter projects\phraso_supabse\phraso\phraso\build\app\generated\res\rs\debug
+com.example.phrasoo.app-mergeDebugResources-22 G:\Flutter projects\phraso_supabse\phraso\phraso\build\app\intermediates\incremental\debug\mergeDebugResources\merged.dir
+com.example.phrasoo.app-mergeDebugResources-23 G:\Flutter projects\phraso_supabse\phraso\phraso\build\app\intermediates\incremental\debug\mergeDebugResources\stripped.dir
+com.example.phrasoo.app-merged_res-24 G:\Flutter projects\phraso_supabse\phraso\phraso\build\app\intermediates\merged_res\debug
+com.example.phrasoo.app-packaged_res-25 G:\Flutter projects\phraso_supabse\phraso\phraso\build\app_links\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-26 G:\Flutter projects\phraso_supabse\phraso\phraso\build\audioplayers_android\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-27 G:\Flutter projects\phraso_supabse\phraso\phraso\build\flutter_appauth\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-28 G:\Flutter projects\phraso_supabse\phraso\phraso\build\google_sign_in_android\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-29 G:\Flutter projects\phraso_supabse\phraso\phraso\build\path_provider_android\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-30 G:\Flutter projects\phraso_supabse\phraso\phraso\build\shared_preferences_android\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-31 G:\Flutter projects\phraso_supabse\phraso\phraso\build\sign_in_with_apple\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-32 G:\Flutter projects\phraso_supabse\phraso\phraso\build\sqflite\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-33 G:\Flutter projects\phraso_supabse\phraso\phraso\build\url_launcher_android\intermediates\packaged_res\debug
+com.example.phrasoo.app-packaged_res-34 G:\Flutter projects\phraso_supabse\phraso\phraso\build\webview_flutter_android\intermediates\packaged_res\debug

@@ -1,0 +1,114 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:phraso/core/constants/firebase_enums.dart';
+import 'package:phraso/core/helper/failure.dart';
+import 'package:phraso/core/helper/typedefs.dart';
+import 'package:phraso/models/following_model.dart';
+import 'package:phraso/models/language_model.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+
+final languageRepositroyProvider = Provider<LanguageRepository>((ref) {
+  return LanguageRepository(client: supabase.Supabase.instance.client);
+});
+
+class LanguageRepository {
+  final supabase.SupabaseClient _client;
+  LanguageRepository({required supabase.SupabaseClient client})
+      : _client = client;
+
+  //* get all languages
+  Future<List<LanguageModel>> getAllLanguage() async {
+    try {
+      final List<dynamic> res =
+          await _client.from('languages').select('*, flags(*)');
+      List<LanguageModel> languages =
+          res.map((e) => LanguageModel.fromMap(e)).toList();
+
+      return languages;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  //* following langugae tile
+  FutureVoid followLanguage(
+      {required String uid, required String langId}) async {
+    try {
+      return right(
+        await _client.from("followings").insert(
+          {"lang_Id": langId, "uid": uid},
+        ),
+      );
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  //* get following language
+  Future<List<FollowingModel>> getFollowingLanguage(
+      {required String uid}) async {
+    try {
+      final List<dynamic> res = await _client
+          .from("followings")
+          .select('*, languages(*, flags(*))')
+          .eq('uid', uid);
+
+      List<FollowingModel> followings =
+          res.map((e) => FollowingModel.fromMap(e)).toList();
+
+      return followings;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  // //* get language by id
+  // Stream<LanguageModel> getlanguageById({required String langId}) {
+  //   return _firestore
+  //       .collection(FirebaseEnums.languages.name)
+  //       .doc(langId)
+  //       .snapshots()
+  //       .map((event) =>
+  //           LanguageModel.fromMap(event.data() as Map<String, dynamic>));
+  // }
+
+  //* is Following already
+
+  Future<bool> isFollowingAlready(
+      {required String uid, required String langId}) async {
+    final res = await _client
+        .from('followings')
+        .select('uid, lang_Id',
+            const supabase.FetchOptions(count: supabase.CountOption.exact))
+        .eq('uid', uid)
+        .eq('lang_Id', langId);
+
+    int count = res.count;
+
+    // Check if count is greater than 0
+    if (count > 0) {
+      print('User is following this language course!');
+      return true;
+    } else {
+      // Entry does not exist, show something else
+      print('User is not following this language course.');
+      return false;
+    }
+  }
+
+  //* unfollowing the following tile
+
+  FutureVoid deleteTheFollowing({
+    required String uid,
+    required String langId,
+  }) async {
+    try {
+      return right(await _client
+          .from('followings')
+          .delete()
+          .match({'uid': uid, 'lang_Id': langId}));
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+}
