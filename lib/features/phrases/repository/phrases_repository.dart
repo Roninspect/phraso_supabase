@@ -122,17 +122,19 @@ class PhrasesRepository {
     }
   }
 
-  //* search phrases
-  Future<List<PhrasesModel>> getSearchResults({required String query}) async {
+  //* search phrase
+  Future<List<PhrasesModel>> getSearchResults(
+      {required String query, required String langId}) async {
     try {
-      String modifiedQuery = query.replaceAll(' ', '&');
-
-      final List<dynamic> res =
-          await _client.from('phrases').select('*').textSearch(
-                'englishPhrases',
-                "$modifiedQuery",
-                config: 'english',
-              );
+      final List<dynamic> res = await _client
+          .from('phrases')
+          .select('*')
+          .textSearch(
+            'englishPhrases',
+            "$query",
+            config: 'english',
+          )
+          .eq('langId', langId);
       print("from repo: $res");
 
       List<PhrasesModel> results =

@@ -242,6 +242,12 @@
       "languageVersion": "2.19"
     },
     {
+      "name": "google_nav_bar",
+      "rootUri": "file:///C:/Users/Arman/AppData/Local/Pub/Cache/hosted/pub.dev/google_nav_bar-5.0.6",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "google_sign_in",
       "rootUri": "file:///C:/Users/Arman/AppData/Local/Pub/Cache/hosted/pub.dev/google_sign_in-6.1.6",
       "packageUri": "lib/",
@@ -752,7 +758,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-11-26T09:33:57.285099Z",
+  "generated": "2023-11-27T15:09:30.212452Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }

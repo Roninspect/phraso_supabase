@@ -24,11 +24,11 @@ class LanguageSearchPage extends ConsumerWidget {
           centerTitle: true,
         ),
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
             children: [
-              const Text(
-                "Search Results: ",
+              Text(
+                "Search Results: $query",
                 style: TextStyle(fontSize: 20),
               ),
               query.isEmpty

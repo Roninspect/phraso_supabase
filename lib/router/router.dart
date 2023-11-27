@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:phraso/features/languages/pages/language_page.dart';
 import 'package:phraso/features/languages/pages/language_search_page.dart';
 import 'package:phraso/features/phrases/pages/phrase_search_page.dart';
+import 'package:phraso/features/root/pages/root_page.dart';
 import 'package:phraso/features/types_of_phrases/pages/top_page.dart';
 import 'package:phraso/models/itinerary_model.dart';
 import 'package:phraso/models/language_model.dart';
@@ -47,7 +48,7 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
       GoRoute(
         path: '/',
         name: AppRoutes.root.name,
-        builder: (context, state) => const Languagepage(),
+        builder: (context, state) => const RootPage(),
       ),
       GoRoute(
           path: '/languages',
@@ -69,9 +70,12 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
                 },
                 routes: [
                   GoRoute(
-                    path: 'search',
+                    path: 'search/:langId',
                     name: AppRoutes.phraseSearch.name,
-                    builder: (context, state) => const PhraseSearchPage(),
+                    builder: (context, state) {
+                      final String langId = state.pathParameters['langId']!;
+                      return PhraseSearchPage(langId: langId);
+                    },
                   )
                 ]),
             GoRoute(

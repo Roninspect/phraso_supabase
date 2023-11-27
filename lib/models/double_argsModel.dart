@@ -20,6 +20,22 @@ class ArgsModel {
   int get hashCode => langId.hashCode ^ typeId.hashCode;
 }
 
+class PhraseArgsModel {
+  final String langId;
+  final String query;
+  PhraseArgsModel({required this.langId, required this.query});
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+
+    return o is PhraseArgsModel && o.langId == langId && o.query == query;
+  }
+
+  @override
+  int get hashCode => langId.hashCode ^ langId.hashCode;
+}
+
 class IsFavAlreadyArgsModel {
   final String langId;
   final int phraseId;
@@ -35,7 +51,6 @@ class IsFavAlreadyArgsModel {
     return o is IsFavAlreadyArgsModel &&
         o.langId == langId &&
         o.phraseId == phraseId;
-
   }
 
   @override

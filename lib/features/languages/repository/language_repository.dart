@@ -115,10 +115,15 @@ class LanguageRepository {
   //* search language
   Future<List<LanguageModel>> getSearchResults({required String query}) async {
     try {
+      // final List<dynamic> res = await _client
+      //     .from('languages')
+      //     .select('*, flags(*)')
+      //     .textSearch('languageName', "$query");
+
       final List<dynamic> res = await _client
           .from('languages')
           .select('*, flags(*)')
-          .textSearch('languageName', "$query");
+          .ilike("languageName", "%$query%");
       print("from repo: $res");
 
       List<LanguageModel> results =

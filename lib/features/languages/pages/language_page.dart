@@ -11,11 +11,21 @@ import 'package:phraso/features/languages/widgets/following_listview.dart';
 import 'package:phraso/features/languages/widgets/language_listview.dart';
 import 'package:phraso/features/languages/widgets/language_search_BTN.dart';
 
-class Languagepage extends ConsumerWidget {
+class Languagepage extends ConsumerStatefulWidget {
   const Languagepage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _LanguagepageState();
+}
+
+class _LanguagepageState extends ConsumerState<Languagepage>
+    with AutomaticKeepAliveClientMixin<Languagepage> {
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  Widget build(BuildContext context) {
+    super.build(context);
     final userName =
         ref.watch(userDataNotifierProvider.select((value) => value.username));
 
@@ -36,7 +46,7 @@ class Languagepage extends ConsumerWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
-        toolbarHeight: MediaQuery.of(context).size.height * 0.05,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.04,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

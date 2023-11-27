@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/common/custom_snackbar.dart';
@@ -27,6 +29,19 @@ final getFollowingLanguageProvider =
 
 final getSearchResultsProvider = FutureProvider.autoDispose
     .family<List<LanguageModel>, String>((ref, query) async {
+  final link = ref.keepAlive();
+  Timer? timer;
+
+  ref.onCancel(() {
+    // start a 30 second timer
+    timer = Timer(const Duration(minutes: 5), () {
+      // dispose on timeout
+      link.close();
+    });
+  });
+  ref.onResume(() {
+    timer?.cancel();
+  });
   return ref
       .watch(languageControllerProvider.notifier)
       .getSearchResults(query: query);

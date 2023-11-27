@@ -8,9 +8,11 @@ import 'package:phraso/router/router.dart';
 
 class SearchPhrases extends ConsumerStatefulWidget {
   final String languageName;
+  final String langId;
   const SearchPhrases({
     super.key,
     required this.languageName,
+    required this.langId,
   });
 
   @override
@@ -24,7 +26,10 @@ class _SearchPhrasesState extends ConsumerState<SearchPhrases> {
       padding: const EdgeInsets.symmetric(horizontal: 25),
       child: TextField(
         onTap: () => context.pushNamed(AppRoutes.phraseSearch.name,
-            pathParameters: {'languageName': widget.languageName}),
+            pathParameters: {
+              'languageName': widget.languageName,
+              'langId': widget.langId
+            }),
         readOnly: true,
         decoration: InputDecoration(
           suffixIcon: Icon(Ionicons.search),

@@ -1,5 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:phraso/core/colors/colors.dart';
 import 'package:phraso/core/common/curtom_back_button.dart';
 import 'package:phraso/features/languages/controller/language_controller.dart';
@@ -8,9 +10,14 @@ import 'package:phraso/features/phrases/controller/phrases_controller.dart';
 import 'package:phraso/features/phrases/providers/search_query_provider.dart';
 import 'package:phraso/features/phrases/widgets/phrases_tile.dart';
 import 'package:phraso/features/phrases/widgets/search_phrases_field.dart';
+import 'package:phraso/models/double_argsModel.dart';
 
 class PhraseSearchPage extends ConsumerWidget {
-  const PhraseSearchPage({super.key});
+  final String langId;
+  const PhraseSearchPage({
+    super.key,
+    required this.langId,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,15 +36,16 @@ class PhraseSearchPage extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Column(
             children: [
-              const Text(
-                "Search Results: ",
-                style: TextStyle(fontSize: 20),
+              Text(
+                "Search Results: $langId",
+                style: const TextStyle(fontSize: 20),
               ),
               query.isEmpty
                   ? const SizedBox.shrink()
                   : Expanded(
                       child: ref
-                          .watch(getPhraseSearchResultsProvider(query))
+                          .watch(getPhraseSearchResultsProvider(
+                              PhraseArgsModel(langId: langId, query: query)))
                           .when(
                             data: (result) {
                               return ListView.builder(

@@ -73,7 +73,9 @@ final getFavourtiesProvider = FutureProvider.family
 //** get search results */
 
 final getPhraseSearchResultsProvider = FutureProvider.autoDispose
-    .family<List<PhrasesModel>, String>((ref, query) async {
+    .family<List<PhrasesModel>, PhraseArgsModel>((ref, vendocode) async {
+  final query = vendocode.query;
+  final langId = vendocode.langId;
   final link = ref.keepAlive();
   Timer? timer;
 
@@ -89,7 +91,7 @@ final getPhraseSearchResultsProvider = FutureProvider.autoDispose
   });
   return ref
       .watch(phrasesControllerProvider.notifier)
-      .getSearchResults(query: query);
+      .getSearchResults(query: query, langId: langId);
 });
 
 class PhrasesContrller extends StateNotifier<bool> {
@@ -170,9 +172,11 @@ class PhrasesContrller extends StateNotifier<bool> {
     });
   }
 
-  Future<List<PhrasesModel>> getSearchResults({required String query}) async {
+  Future<List<PhrasesModel>> getSearchResults(
+      {required String query, required String langId}) async {
     try {
-      return await _phrasesRepository.getSearchResults(query: query);
+      return await _phrasesRepository.getSearchResults(
+          query: query, langId: langId);
     } catch (e) {
       throw e.toString();
     }

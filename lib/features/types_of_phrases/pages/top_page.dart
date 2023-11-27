@@ -90,7 +90,7 @@ class TypesOfPhrases extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             blockSpacing,
-            SearchPhrases(languageName: languageName),
+            SearchPhrases(languageName: languageName, langId: language.id),
             blockSpacing,
             Padding(
                 padding: const EdgeInsets.all(8.0).copyWith(left: 20),
