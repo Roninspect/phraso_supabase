@@ -70,6 +70,28 @@ final getFavourtiesProvider = FutureProvider.family
       );
 });
 
+//** get search results */
+
+final getPhraseSearchResultsProvider = FutureProvider.autoDispose
+    .family<List<PhrasesModel>, String>((ref, query) async {
+  final link = ref.keepAlive();
+  Timer? timer;
+
+  ref.onCancel(() {
+    // start a 30 second timer
+    timer = Timer(const Duration(minutes: 15), () {
+      // dispose on timeout
+      link.close();
+    });
+  });
+  ref.onResume(() {
+    timer?.cancel();
+  });
+  return ref
+      .watch(phrasesControllerProvider.notifier)
+      .getSearchResults(query: query);
+});
+
 class PhrasesContrller extends StateNotifier<bool> {
   final PhrasesRepository _phrasesRepository;
   PhrasesContrller({required PhrasesRepository phrasesRepository})
@@ -146,5 +168,13 @@ class PhrasesContrller extends StateNotifier<bool> {
           IsFavAlreadyArgsModel(langId: langId, phraseId: phraseId)));
       ref.refresh(getFavourtiesProvider(langId));
     });
+  }
+
+  Future<List<PhrasesModel>> getSearchResults({required String query}) async {
+    try {
+      return await _phrasesRepository.getSearchResults(query: query);
+    } catch (e) {
+      throw e.toString();
+    }
   }
 }

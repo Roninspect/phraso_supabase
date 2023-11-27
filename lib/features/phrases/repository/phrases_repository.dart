@@ -79,8 +79,10 @@ class PhrasesRepository {
     try {
       final res = await _client
           .from('favourites')
-          .select('uid, langId',
-              const supabase.FetchOptions(count: supabase.CountOption.exact))
+          .select(
+              'uid, langId',
+              const supabase.FetchOptions(
+                  count: supabase.CountOption.estimated))
           .eq('uid', uid)
           .eq('phraseId', phraseId)
           .eq('langId', langId);
@@ -117,6 +119,28 @@ class PhrasesRepository {
       );
     } catch (e) {
       return left(Failure(e.toString()));
+    }
+  }
+
+  //* search phrases
+  Future<List<PhrasesModel>> getSearchResults({required String query}) async {
+    try {
+      String modifiedQuery = query.replaceAll(' ', '&');
+
+      final List<dynamic> res =
+          await _client.from('phrases').select('*').textSearch(
+                'englishPhrases',
+                "$modifiedQuery",
+                config: 'english',
+              );
+      print("from repo: $res");
+
+      List<PhrasesModel> results =
+          res.map((e) => PhrasesModel.fromMap(e)).toList();
+
+      return results;
+    } catch (e) {
+      throw e.toString();
     }
   }
 }

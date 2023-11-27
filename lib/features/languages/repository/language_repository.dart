@@ -111,4 +111,22 @@ class LanguageRepository {
       return left(Failure(e.toString()));
     }
   }
+
+  //* search language
+  Future<List<LanguageModel>> getSearchResults({required String query}) async {
+    try {
+      final List<dynamic> res = await _client
+          .from('languages')
+          .select('*, flags(*)')
+          .textSearch('languageName', "$query");
+      print("from repo: $res");
+
+      List<LanguageModel> results =
+          res.map((e) => LanguageModel.fromMap(e)).toList();
+
+      return results;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
 }

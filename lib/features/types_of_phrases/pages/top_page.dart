@@ -6,7 +6,8 @@ import 'package:phraso/core/colors/colors.dart';
 import 'package:phraso/core/common/curtom_back_button.dart';
 import 'package:phraso/core/constants/spacings.dart';
 import 'package:phraso/features/types_of_phrases/widgets/favourtie_tile.dart';
-import 'package:phraso/features/types_of_phrases/widgets/search_phrases.dart';
+import 'package:phraso/features/types_of_phrases/widgets/search_phrases._BTN.dart';
+
 import 'package:phraso/features/types_of_phrases/widgets/types_listview.dart';
 import 'package:phraso/models/language_model.dart';
 
@@ -89,7 +90,7 @@ class TypesOfPhrases extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             blockSpacing,
-            const SearchPhrases(),
+            SearchPhrases(languageName: languageName),
             blockSpacing,
             Padding(
                 padding: const EdgeInsets.all(8.0).copyWith(left: 20),

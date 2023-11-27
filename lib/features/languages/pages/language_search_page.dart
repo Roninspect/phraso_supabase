@@ -1,0 +1,63 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phraso/core/colors/colors.dart';
+import 'package:phraso/core/common/curtom_back_button.dart';
+import 'package:phraso/core/common/language_tile.dart';
+import 'package:phraso/features/languages/controller/language_controller.dart';
+import 'package:phraso/features/languages/provider/search_query_provider.dart';
+import 'package:phraso/features/languages/widgets/language_search_field.dart';
+
+class LanguageSearchPage extends ConsumerWidget {
+  const LanguageSearchPage({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final query = ref.watch(searchQueryNotifierProvider);
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor,
+        appBar: AppBar(
+          toolbarHeight: 80,
+          automaticallyImplyLeading: false,
+          title: const LanguageSearchField(),
+          leading: const CustomBackButton(),
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: Column(
+            children: [
+              const Text(
+                "Search Results: ",
+                style: TextStyle(fontSize: 20),
+              ),
+              query.isEmpty
+                  ? SizedBox.shrink()
+                  : Expanded(
+                      child: ref.watch(getSearchResultsProvider(query)).when(
+                            data: (result) {
+                              return ListView.builder(
+                                itemCount: result.length,
+                                itemBuilder: (context, index) {
+                                  final singleResult = result[index];
+                                  return LanguageTile(language: singleResult);
+                                },
+                              );
+                            },
+                            error: (error, stackTrace) {
+                              return Center(
+                                child: Text(error.toString()),
+                              );
+                            },
+                            loading: () => const Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          ),
+                    )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -9,7 +9,7 @@ import 'package:phraso/features/auth/provider/user_data_notifer.dart';
 import 'package:phraso/features/languages/widgets/following_listview.dart';
 
 import 'package:phraso/features/languages/widgets/language_listview.dart';
-import 'package:phraso/features/languages/widgets/language_search.dart';
+import 'package:phraso/features/languages/widgets/language_search_BTN.dart';
 
 class Languagepage extends ConsumerWidget {
   const Languagepage({super.key});
@@ -57,16 +57,16 @@ class Languagepage extends ConsumerWidget {
 
               //* language searching
 
-              const LanguageSearch(),
+              const LanguageSearchButton(),
               blockSpacing,
 
               //* following languages
-
               const Text("Following", style: TextStyle(fontSize: 20)),
-
               smallSpacing,
               const FollowingListview(),
               blockSpacing,
+
+              //* ALl languages
               const Text("All language", style: TextStyle(fontSize: 20)),
               const AllLanguagelistView(),
               blockSpacing,

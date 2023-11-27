@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
 import 'package:go_router/go_router.dart';
 import 'package:phraso/features/languages/pages/language_page.dart';
+import 'package:phraso/features/languages/pages/language_search_page.dart';
+import 'package:phraso/features/phrases/pages/phrase_search_page.dart';
 import 'package:phraso/features/types_of_phrases/pages/top_page.dart';
 import 'package:phraso/models/itinerary_model.dart';
 import 'package:phraso/models/language_model.dart';
@@ -20,7 +22,9 @@ enum AppRoutes {
   types_of_phrases,
   phrases,
   planner,
-  trip
+  trip,
+  languageSearch,
+  phraseSearch
 }
 
 final routerProvider = riverpod.Provider<GoRouter>((ref) {
@@ -51,19 +55,30 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
           builder: (context, state) => const Languagepage(),
           routes: [
             GoRoute(
-              path: 'types_of_phrases/:languageName',
-              name: AppRoutes.types_of_phrases.name,
-              builder: (context, state) {
-                final LanguageModel languageModel =
-                    state.extra as LanguageModel;
-                final String languageName =
-                    state.pathParameters['languageName']!;
-                return TypesOfPhrases(
-                  language: languageModel,
-                  languageName: languageName,
-                );
-              },
-            ),
+                path: 'types_of_phrases/:languageName',
+                name: AppRoutes.types_of_phrases.name,
+                builder: (context, state) {
+                  final LanguageModel languageModel =
+                      state.extra as LanguageModel;
+                  final String languageName =
+                      state.pathParameters['languageName']!;
+                  return TypesOfPhrases(
+                    language: languageModel,
+                    languageName: languageName,
+                  );
+                },
+                routes: [
+                  GoRoute(
+                    path: 'search',
+                    name: AppRoutes.phraseSearch.name,
+                    builder: (context, state) => const PhraseSearchPage(),
+                  )
+                ]),
+            GoRoute(
+              path: 'search',
+              name: AppRoutes.languageSearch.name,
+              builder: (context, state) => const LanguageSearchPage(),
+            )
           ])
       // GoRoute(
       //     path: '/planner',

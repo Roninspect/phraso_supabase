@@ -65,7 +65,7 @@ class PhrasesPage extends ConsumerWidget {
                   );
                 } else {
                   return const Center(
-                    child: Text("Empty"),
+                    child: Text("Coming soon"),
                   );
                 }
               },

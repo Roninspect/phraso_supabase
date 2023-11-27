@@ -25,6 +25,13 @@ final getFollowingLanguageProvider =
       uid: supabase.Supabase.instance.client.auth.currentUser!.id);
 });
 
+final getSearchResultsProvider = FutureProvider.autoDispose
+    .family<List<LanguageModel>, String>((ref, query) async {
+  return ref
+      .watch(languageControllerProvider.notifier)
+      .getSearchResults(query: query);
+});
+
 // final getlanguageByIdProvider =
 //     StreamProvider.family<LanguageModel, String>((ref, String langId) {
 //   return ref.watch(languageControllerProvider).getlanguageById(langId: langId);
@@ -93,5 +100,13 @@ class LanguageController extends StateNotifier<bool> {
       ref.refresh(getFollowingLanguageProvider);
       ref.refresh(isFollowingAlreadyProvider(langId));
     });
+  }
+
+  Future<List<LanguageModel>> getSearchResults({required String query}) async {
+    try {
+      return await _languageRepository.getSearchResults(query: query);
+    } catch (e) {
+      throw e.toString();
+    }
   }
 }
