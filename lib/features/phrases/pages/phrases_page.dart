@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/common/curtom_back_button.dart';
+import 'package:phraso/core/common/loader.dart';
 import 'package:phraso/features/phrases/widgets/phrases_tile.dart';
 import 'package:phraso/models/top_model.dart';
 import '../../../models/double_argsModel.dart';
@@ -24,63 +25,66 @@ class PhrasesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(4.0),
-            child: Container(
-              color: Colors.black,
-              height: 3.0,
-            ),
-          ),
-          leading: const CustomBackButton(),
-          backgroundColor: Color(int.parse(typesOfPhrasesmodel.color)),
-          toolbarHeight: 100,
-          title: Column(
-            children: [
-              Text(nameOfType),
-              Text(
-                "in $languageName",
-                style: const TextStyle(fontSize: 15),
-              ),
-            ],
+      appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.black,
+            height: 3.0,
           ),
         ),
-        body: ref
-            .watch(getPhrasesByIdsProvider(
-                ArgsModel(langId: langId, typeId: typesOfPhrasesmodel.id)))
-            .when(
-              data: (data) {
-                if (data.isNotEmpty) {
-                  if (kDebugMode) {
-                    print(data);
-                  }
-                  return ListView.builder(
-                    itemCount: data.length,
-                    itemBuilder: (context, index) {
-                      final phrase = data[index];
-                      return PhraseTile(phrasesModel: phrase);
-                    },
-                  );
-                } else {
-                  return const Center(
-                    child: Text("Coming soon"),
-                  );
+        leading: const CustomBackButton(),
+        backgroundColor: Color(int.parse(typesOfPhrasesmodel.color)),
+        toolbarHeight: 100,
+        title: Column(
+          children: [
+            Text(nameOfType),
+            Text(
+              "in $languageName",
+              style: const TextStyle(fontSize: 15),
+            ),
+          ],
+        ),
+      ),
+      body: ref
+          .watch(getPhrasesByIdsProvider(
+              ArgsModel(langId: langId, typeId: typesOfPhrasesmodel.id)))
+          .when(
+            data: (data) {
+              if (data.isNotEmpty) {
+                if (kDebugMode) {
+                  print(data);
                 }
-              },
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (error, stackTrace) {
-                return Center(
-                  child: Text(
-                    error.toString(),
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge!
-                        .copyWith(color: Colors.red),
-                  ),
+                return ListView.builder(
+                  itemCount: data.length,
+                  itemBuilder: (context, index) {
+                    final phrase = data[index];
+                    return PhraseTile(phrasesModel: phrase);
+                  },
                 );
-              },
-            ));
+              } else {
+                return const Center(
+                  child: Text("Coming soon"),
+                );
+              }
+            },
+            loading: () => Center(
+              child: loader(),
+            ),
+            error: (error, stackTrace) {
+              return Center(
+                child: Text(
+                  error.toString(),
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleLarge!
+                      .copyWith(color: Colors.red),
+                ),
+              );
+            },
+          ),
+    );
   }
 }

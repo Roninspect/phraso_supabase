@@ -20,22 +20,29 @@ class _LanguageSearchFieldState extends ConsumerState<LanguageSearchField> {
     return SizedBox(
       width: 350,
       child: TextField(
+        autofocus: true,
         onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
         onChanged: (value) {
-          if (_debounce != null) {
-            _debounce!.cancel();
+          if (value.length >= 3) {
+            if (_debounce != null) {
+              _debounce!.cancel();
+            }
+            _debounce = Timer(const Duration(milliseconds: 800), () {
+              ref
+                  .read(searchQueryNotifierProvider.notifier)
+                  .inputQuery(query: value);
+            });
           }
-          _debounce = Timer(const Duration(milliseconds: 800), () {
-            ref
-                .read(searchQueryNotifierProvider.notifier)
-                .inputQuery(query: value);
-          });
         },
-        onEditingComplete: () {},
+        onSubmitted: (value) {
+          ref
+              .read(searchQueryNotifierProvider.notifier)
+              .inputQuery(query: value);
+        },
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
-          hintText: "(country name, language name)",
+          hintText: "Search 'Portuguese'",
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 2),
             borderRadius: BorderRadius.circular(20),

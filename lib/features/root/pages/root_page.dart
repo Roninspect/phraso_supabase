@@ -31,7 +31,7 @@ class _RootPageState extends ConsumerState<RootPage> {
 
   @override
   Widget build(BuildContext context) {
-    final nav = ref.watch(navNotifierProvider);
+    final index = ref.watch(navNotifierProvider);
     return Scaffold(
       body: PageView(
         controller: _pageController,
@@ -71,8 +71,11 @@ class _RootPageState extends ConsumerState<RootPage> {
                 text: "Blog",
               ),
             ],
-            selectedIndex: nav,
+            selectedIndex: index,
             onTabChange: (value) {
+              _pageController.animateToPage(value,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.fastOutSlowIn);
               ref.read(navNotifierProvider.notifier).navStateChange(value);
             },
           ),

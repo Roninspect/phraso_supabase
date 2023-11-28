@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phraso/core/common/alert_dialog.dart';
+import 'package:phraso/core/common/loader.dart';
 import 'package:phraso/features/phrases/controller/phrases_controller.dart';
 import 'package:phraso/models/phrases_model.dart';
 import '../../../core/helper/async_value_helper.dart';
@@ -27,8 +28,8 @@ class FavButton extends ConsumerWidget {
     }
 
     return isLoading
-        ? const Center(
-            child: CircularProgressIndicator(),
+        ? Center(
+            child: loader(),
           )
         : AsyncValueWidget(
             value: ref.watch(isfavAlreadyProvider(IsFavAlreadyArgsModel(

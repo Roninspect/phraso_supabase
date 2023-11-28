@@ -122,17 +122,18 @@ class PhrasesRepository {
     }
   }
 
-  //* search phrase
+  //* search phrase from specific language
   Future<List<PhrasesModel>> getSearchResults(
       {required String query, required String langId}) async {
     try {
+      String modifiedQuery = query.replaceAll(' ', '&');
+
       final List<dynamic> res = await _client
           .from('phrases')
           .select('*')
-          .textSearch(
+          .ilike(
             'englishPhrases',
-            "$query",
-            config: 'english',
+            "%$modifiedQuery%",
           )
           .eq('langId', langId);
       print("from repo: $res");

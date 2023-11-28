@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/common/custom_snackbar.dart';
+import 'package:phraso/features/languages/provider/search_query_provider.dart';
 import 'package:phraso/features/languages/repository/language_repository.dart';
 import 'package:phraso/models/following_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
@@ -34,8 +35,9 @@ final getSearchResultsProvider = FutureProvider.autoDispose
 
   ref.onCancel(() {
     // start a 30 second timer
-    timer = Timer(const Duration(minutes: 5), () {
+    timer = Timer(const Duration(minutes: 2), () {
       // dispose on timeout
+      ref.invalidate(searchQueryNotifierProvider);
       link.close();
     });
   });

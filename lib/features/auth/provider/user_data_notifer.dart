@@ -1,10 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/features/auth/repository/auth_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../../../models/user_model.dart';
-import '../controller/auth_controller.dart';
 
 final userDataNotifierProvider =
     StateNotifierProvider<UserDataNotifier, UserModel>((ref) {

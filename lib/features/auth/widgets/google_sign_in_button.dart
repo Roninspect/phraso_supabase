@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phraso/core/common/loader.dart';
 
 import '../controller/auth_controller.dart';
 
@@ -16,7 +17,7 @@ class GoogleButton extends ConsumerWidget {
         ref.watch(authControllerProvider.notifier).singInWithGoogle(context);
       },
       child: isLoading
-          ? const CircularProgressIndicator()
+          ? loader()
           : Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -1,6 +1,7 @@
 // Generic AsyncValueWidget to work with values of type T
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:phraso/core/common/loader.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({Key? key, required this.value, required this.data})
@@ -14,7 +15,7 @@ class AsyncValueWidget<T> extends StatelessWidget {
   Widget build(BuildContext context) {
     return value.when(
       data: data,
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => Center(child: loader()),
       error: (error, stackTrace) {
         print(error);
         print(stackTrace);

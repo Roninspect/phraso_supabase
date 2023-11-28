@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart' as riverpod;
 import 'package:go_router/go_router.dart';
 import 'package:phraso/features/languages/pages/language_page.dart';
@@ -81,7 +82,11 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
             GoRoute(
               path: 'search',
               name: AppRoutes.languageSearch.name,
-              builder: (context, state) => const LanguageSearchPage(),
+              pageBuilder: (context, state) => MaterialPage(
+                key: state.pageKey,
+                fullscreenDialog: true,
+                child: const LanguageSearchPage(),
+              ),
             )
           ])
       // GoRoute(

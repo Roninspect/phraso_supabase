@@ -1,8 +1,8 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/common/custom_snackbar.dart';
+import 'package:phraso/features/phrases/providers/search_query_provider.dart';
 import 'package:phraso/features/phrases/repository/phrases_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
@@ -83,6 +83,7 @@ final getPhraseSearchResultsProvider = FutureProvider.autoDispose
     // start a 30 second timer
     timer = Timer(const Duration(minutes: 15), () {
       // dispose on timeout
+      ref.invalidate(phraseSearchQueryNotifierProvider);
       link.close();
     });
   });
