@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:phraso/core/colors/colors.dart';
 import 'package:phraso/core/common/alert_dialog.dart';
 import 'package:phraso/core/common/custom_snackbar.dart';
 import 'package:phraso/features/languages/controller/language_controller.dart';
@@ -83,7 +84,7 @@ class LanguageTile extends ConsumerWidget {
                   isLoading
                       ? Container(
                           decoration: BoxDecoration(
-                              color: const Color(0xffFFBD12),
+                              color: yellowColor,
                               borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: Colors.black, width: 2),
                               boxShadow: const [
@@ -106,7 +107,7 @@ class LanguageTile extends ConsumerWidget {
                                 onTap: () => followLanguage(),
                                 child: Container(
                                     decoration: BoxDecoration(
-                                        color: const Color(0xffFFBD12),
+                                        color: yellowColor,
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                             color: Colors.black, width: 2),
@@ -139,7 +140,7 @@ class LanguageTile extends ConsumerWidget {
                                 ),
                                 child: Container(
                                     decoration: BoxDecoration(
-                                        color: const Color(0xffFFBD12),
+                                        color: yellowColor,
                                         borderRadius: BorderRadius.circular(12),
                                         border: Border.all(
                                             color: Colors.black, width: 2),
@@ -154,8 +155,9 @@ class LanguageTile extends ConsumerWidget {
                                       child: Text(
                                         "Following",
                                         style: TextStyle(
-                                            fontSize: 11,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 11,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     )),
                               );
