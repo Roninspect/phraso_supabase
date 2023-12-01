@@ -72,7 +72,11 @@ class LanguageController extends StateNotifier<bool> {
   final uid = supabase.Supabase.instance.client.auth.currentUser!.id;
 
   Future<List<LanguageModel>> getAllLanguage() async {
-    return await _languageRepository.getAllLanguage();
+    try {
+      return await _languageRepository.getAllLanguage();
+    } catch (e) {
+      throw e.toString();
+    }
   }
 
   Future<void> followLanguage(
