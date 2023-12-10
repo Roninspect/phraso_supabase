@@ -71,13 +71,11 @@ class _LanguagepageState extends ConsumerState<Languagepage>
               blockSpacing,
 
               //* following languages
-              const Text("Following", style: TextStyle(fontSize: 20)),
-              smallSpacing,
               const FollowingListview(),
               blockSpacing,
 
               //* ALl languages
-              const Text("All language", style: TextStyle(fontSize: 20)),
+              const Text("All languages", style: TextStyle(fontSize: 20)),
               const AllLanguagelistView(),
               blockSpacing,
             ],

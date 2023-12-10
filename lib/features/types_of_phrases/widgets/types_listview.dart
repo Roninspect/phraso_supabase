@@ -47,8 +47,10 @@ class TypesListView extends ConsumerWidget {
                     side: const BorderSide(color: Colors.black, width: 2),
                     borderRadius: BorderRadius.circular(15),
                   ),
-                  leading:
-                      Icon(IconData(iconCode, fontFamily: 'MaterialIcons')),
+                  leading: Icon(
+                    IconData(iconCode, fontFamily: 'MaterialIcons'),
+                    color: Colors.black,
+                  ),
                   tileColor: Color(int.parse(type.color)),
                   title: Text(type.name),
                 ),

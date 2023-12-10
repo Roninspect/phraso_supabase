@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
-import 'package:phraso/core/constants/firebase_enums.dart';
 import 'package:phraso/core/helper/failure.dart';
 import 'package:phraso/core/helper/typedefs.dart';
 import 'package:phraso/models/following_model.dart';
@@ -62,16 +61,6 @@ class LanguageRepository {
     }
   }
 
-  // //* get language by id
-  // Stream<LanguageModel> getlanguageById({required String langId}) {
-  //   return _firestore
-  //       .collection(FirebaseEnums.languages.name)
-  //       .doc(langId)
-  //       .snapshots()
-  //       .map((event) =>
-  //           LanguageModel.fromMap(event.data() as Map<String, dynamic>));
-  // }
-
   //* is Following already
 
   Future<bool> isFollowingAlready(
@@ -87,11 +76,8 @@ class LanguageRepository {
 
     // Check if count is greater than 0
     if (count > 0) {
-      print('User is following this language course!');
       return true;
     } else {
-      // Entry does not exist, show something else
-      print('User is not following this language course.');
       return false;
     }
   }
@@ -115,16 +101,10 @@ class LanguageRepository {
   //* search language
   Future<List<LanguageModel>> getSearchResults({required String query}) async {
     try {
-      // final List<dynamic> res = await _client
-      //     .from('languages')
-      //     .select('*, flags(*)')
-      //     .textSearch('languageName', "$query");
-
       final List<dynamic> res = await _client
           .from('languages')
           .select('*, flags(*)')
           .ilike("languageName", "%$query%");
-      print("from repo: $res");
 
       List<LanguageModel> results =
           res.map((e) => LanguageModel.fromMap(e)).toList();

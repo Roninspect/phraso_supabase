@@ -1,69 +1,111 @@
-class ItineraryModel {
-  String tripId;
-  String tripName;
-  String background;
-  num startDate;
-  num endTime;
-  List<String> members;
-  String creatorId;
-  String place;
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
 
-  ItineraryModel(
-      {required this.tripId,
-      required this.tripName,
-      required this.background,
-      required this.startDate,
-      required this.endTime,
-      required this.members,
-      required this.creatorId,
-      required this.place});
+import 'package:flutter/foundation.dart';
+
+import 'package:phraso/models/itinerary_member.dart';
+
+class ItineraryModel {
+  final String tripId;
+  final DateTime created_at;
+  final String tripName;
+  final String background;
+  final DateTime start_date;
+  final DateTime end_date;
+  final String creatorId;
+  final String place;
+  ItineraryModel({
+    required this.tripId,
+    required this.created_at,
+    required this.tripName,
+    required this.background,
+    required this.start_date,
+    required this.end_date,
+    required this.creatorId,
+    required this.place,
+  });
 
   ItineraryModel copyWith({
     String? tripId,
+    DateTime? created_at,
     String? tripName,
     String? background,
-    num? startDate,
-    num? endTime,
-    List<String>? members,
+    DateTime? start_date,
+    DateTime? end_date,
     String? creatorId,
     String? place,
   }) {
     return ItineraryModel(
       tripId: tripId ?? this.tripId,
+      created_at: created_at ?? this.created_at,
       tripName: tripName ?? this.tripName,
-      place: place ?? this.place,
       background: background ?? this.background,
-      startDate: startDate ?? this.startDate,
-      endTime: endTime ?? this.endTime,
-      members: members ?? this.members,
+      start_date: start_date ?? this.start_date,
+      end_date: end_date ?? this.end_date,
       creatorId: creatorId ?? this.creatorId,
-    );
-  }
-
-  factory ItineraryModel.fromMap(Map<String, dynamic> map) {
-    return ItineraryModel(
-      tripId: map['tripId'],
-      tripName: map['tripName'],
-      place: map['place'],
-      background: map['background'],
-      startDate: map['startDate'],
-      endTime: map['endTime'],
-      members: List<String>.from(
-          (map['members'] as List<dynamic>).map((e) => e as String).toList()),
-      creatorId: map['creatorId'],
+      place: place ?? this.place,
     );
   }
 
   Map<String, dynamic> toMap() {
-    return {
+    return <String, dynamic>{
       'tripId': tripId,
+      'created_at': created_at.millisecondsSinceEpoch,
       'tripName': tripName,
       'background': background,
-      'startDate': startDate,
-      'endTime': endTime,
-      'members': members,
+      'start_date': start_date.millisecondsSinceEpoch,
+      'end_date': end_date.millisecondsSinceEpoch,
+      'creatorId': creatorId,
       'place': place,
-      'creatorId': creatorId
     };
+  }
+
+  factory ItineraryModel.fromMap(Map<String, dynamic> map) {
+    return ItineraryModel(
+      tripId: map['tripId'] as String,
+      created_at: DateTime.parse(map['created_at'] as String),
+      tripName: map['tripName'] as String,
+      background: map['background'] as String,
+      start_date: DateTime.parse(map['start_date'] as String),
+      end_date: DateTime.parse(map['end_date'] as String),
+      creatorId: map['creatorId'] as String,
+      place: map['place'] as String,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory ItineraryModel.fromJson(String source) =>
+      ItineraryModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'ItineraryModel(tripId: $tripId, created_at: $created_at, tripName: $tripName, background: $background, start_date: $start_date, end_date: $end_date, creatorId: $creatorId, place: $place)';
+  }
+
+  @override
+  bool operator ==(covariant ItineraryModel other) {
+    if (identical(this, other)) return true;
+
+    return other.tripId == tripId &&
+        other.created_at == created_at &&
+        other.tripName == tripName &&
+        other.background == background &&
+        other.start_date == start_date &&
+        other.end_date == end_date &&
+        other.creatorId == creatorId &&
+        other.place == place;
+  }
+
+  @override
+  int get hashCode {
+    return tripId.hashCode ^
+        created_at.hashCode ^
+        tripName.hashCode ^
+        background.hashCode ^
+        start_date.hashCode ^
+        end_date.hashCode ^
+        creatorId.hashCode ^
+        place.hashCode;
   }
 }

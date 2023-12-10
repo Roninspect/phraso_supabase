@@ -410,6 +410,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "intl",
+      "rootUri": "file:///C:/Users/Arman/AppData/Local/Pub/Cache/hosted/pub.dev/intl-0.19.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "io",
       "rootUri": "file:///C:/Users/Arman/AppData/Local/Pub/Cache/hosted/pub.dev/io-1.0.4",
       "packageUri": "lib/",
@@ -776,6 +782,12 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "timelines",
+      "rootUri": "file:///C:/Users/Arman/AppData/Local/Pub/Cache/hosted/pub.dev/timelines-0.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "timing",
       "rootUri": "file:///C:/Users/Arman/AppData/Local/Pub/Cache/hosted/pub.dev/timing-1.0.1",
       "packageUri": "lib/",
@@ -920,7 +932,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-12-01T11:33:21.658295Z",
+  "generated": "2023-12-10T13:46:52.825609Z",
   "generator": "pub",
   "generatorVersion": "3.1.3"
 }

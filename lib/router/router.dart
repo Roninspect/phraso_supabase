@@ -4,6 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:phraso/features/languages/pages/language_page.dart';
 import 'package:phraso/features/languages/pages/language_search_page.dart';
 import 'package:phraso/features/phrases/pages/phrase_search_page.dart';
+import 'package:phraso/features/planner/pages/create_plan.dart';
+import 'package:phraso/features/planner/pages/planner_page.dart';
 import 'package:phraso/features/root/pages/root_page.dart';
 import 'package:phraso/features/types_of_phrases/pages/top_page.dart';
 import 'package:phraso/models/itinerary_model.dart';
@@ -25,6 +27,7 @@ enum AppRoutes {
   phrases,
   planner,
   trip,
+  addTrip,
   languageSearch,
   phraseSearch
 }
@@ -88,25 +91,20 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
                 child: const LanguageSearchPage(),
               ),
             )
+          ]),
+      GoRoute(
+          path: '/planner',
+          name: AppRoutes.planner.name,
+          builder: (context, state) => const Plannerpage(),
+          routes: [
+            GoRoute(
+              path: 'addTrip',
+              name: AppRoutes.addTrip.name,
+              builder: (context, state) {
+                return const CreateTrip();
+              },
+            ),
           ])
-      // GoRoute(
-      //     path: '/planner',
-      //     name: AppRoutes.planner.name,
-      //     builder: (context, state) => const Plannerpage(),
-      //     routes: [
-      //       GoRoute(
-      //         path: 'trip/:tripName',
-      //         name: AppRoutes.trip.name,
-      //         builder: (context, state) {
-      //           final String tripName = state.pathParameters['tripName']!;
-      //           final ItineraryModel tripId = state.extra as ItineraryModel;
-      //           return TripPage(
-      //             tripName: tripName,
-      //             itineraryModel: tripId,
-      //           );
-      //         },
-      //       ),
-      //     ])
     ],
     redirect: (context, state) async {
       final User? session = Supabase.instance.client.auth.currentUser;

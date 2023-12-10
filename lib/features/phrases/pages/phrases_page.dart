@@ -64,7 +64,7 @@ class PhrasesPage extends ConsumerWidget {
                     return PhraseTile(phrasesModel: phrase);
                   },
                 );
-              } else {
+              } else { 
                 return const Center(
                   child: Text("Coming soon"),
                 );
