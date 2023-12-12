@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.phrasoo.app-mergeDebugResources-22:/values-bn/values-bn.xml",
+            "outputFile": "com.example.phrasoo.app-mergeDebugResources-29:/values-bn/values-bn.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Arman\\.gradle\\caches\\transforms-3\\07ce4be41ea2bdb67a70843d86dadbbf\\transformed\\jetified-play-services-base-18.0.1\\res\\values-bn\\values.xml",

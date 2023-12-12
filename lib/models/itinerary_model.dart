@@ -7,18 +7,18 @@ import 'package:phraso/models/itinerary_member.dart';
 
 class ItineraryModel {
   final String tripId;
-  final DateTime created_at;
+  DateTime? created_at;
   final String tripName;
-  final String background;
+  String? background;
   final DateTime start_date;
   final DateTime end_date;
   final String creatorId;
   final String place;
   ItineraryModel({
     required this.tripId,
-    required this.created_at,
+    this.created_at,
     required this.tripName,
-    required this.background,
+    this.background,
     required this.start_date,
     required this.end_date,
     required this.creatorId,
@@ -50,11 +50,10 @@ class ItineraryModel {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'tripId': tripId,
-      'created_at': created_at.millisecondsSinceEpoch,
       'tripName': tripName,
       'background': background,
-      'start_date': start_date.millisecondsSinceEpoch,
-      'end_date': end_date.millisecondsSinceEpoch,
+      'start_date': start_date.toString(),
+      'end_date': end_date.toString(),
       'creatorId': creatorId,
       'place': place,
     };

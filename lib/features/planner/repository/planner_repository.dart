@@ -1,12 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phraso/core/constants/firebase_enums.dart';
-import 'package:phraso/models/double_argsModel.dart';
+import 'package:fpdart/fpdart.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:phraso/core/helper/failure.dart';
+import 'package:phraso/core/helper/typedefs.dart';
 import 'package:phraso/models/itinerary_member.dart';
 import 'package:phraso/models/itinerary_model.dart';
-import 'package:phraso/models/plan_model.dart';
-import 'package:phraso/models/planned_days_model.dart';
-import 'package:phraso/models/user_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
+import 'package:uuid/uuid.dart';
 
 class ArgsModelForPlanner {
   final String tripId;
@@ -78,6 +78,41 @@ class PlannerRepository {
       return itineraries;
     } catch (e) {
       throw e.toString();
+    }
+  }
+
+  //* create a new plan
+
+  FutureVoid createPlan(
+      {String? image,
+      required String tripName,
+      required String placeName,
+      required DateTime startTime,
+      required String uid,
+      required DateTime endTime}) async {
+    try {
+      final itineraryId = const Uuid().v4();
+      final newPlan = ItineraryModel(
+          tripId: itineraryId,
+          tripName: tripName,
+          start_date: startTime,
+          end_date: endTime,
+          creatorId: uid,
+          background: image,
+          place: placeName);
+
+      await _client.from('itineraries').insert(newPlan.toMap());
+
+      final newMember = ItineraryMember(
+        itineraryId: itineraryId,
+        userId: uid,
+        isAdmin: true,
+      );
+
+      return right(
+          await _client.from('itinerary_members').insert(newMember.toMap()));
+    } catch (e) {
+      return left(Failure(e.toString()));
     }
   }
 

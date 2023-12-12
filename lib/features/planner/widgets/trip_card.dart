@@ -49,14 +49,15 @@ class TripCard extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Container(
           decoration: BoxDecoration(
-              color: plannerModel.background.isEmpty ? Colors.yellow : null,
+              color: plannerModel.background!.isEmpty ? Colors.green : null,
               border: Border.all(),
               borderRadius: BorderRadius.circular(20),
-              image: plannerModel.background.isEmpty
+              image: plannerModel.background!.isEmpty
                   ? null
                   : DecorationImage(
-                      image:
-                          CachedNetworkImageProvider(plannerModel.background),
+                      image: CachedNetworkImageProvider(
+                          plannerModel.background!,
+                          cacheKey: plannerModel.tripId),
                       fit: BoxFit.cover,
                       colorFilter: const ColorFilter.mode(
                           Colors.black26, BlendMode.darken),

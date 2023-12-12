@@ -6,19 +6,19 @@ import 'package:flutter/foundation.dart';
 import 'package:phraso/models/itinerary_model.dart';
 
 class ItineraryMember {
-  final String id;
-  final DateTime joinedAt;
+  String? id;
+  DateTime? joinedAt;
   final String itineraryId;
   final String userId;
   final bool isAdmin;
-  final ItineraryModel itineraries;
+  ItineraryModel? itineraries;
   ItineraryMember({
-    required this.id,
-    required this.joinedAt,
+    this.id,
+    this.joinedAt,
     required this.itineraryId,
     required this.userId,
     required this.isAdmin,
-    required this.itineraries,
+    this.itineraries,
   });
 
   ItineraryMember copyWith({
@@ -41,12 +41,9 @@ class ItineraryMember {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id': id,
-      'joinedAt': joinedAt.millisecondsSinceEpoch,
       'itineraryId': itineraryId,
       'userId': userId,
-      'isAdmin': isAdmin,
-      'itineraries': itineraries.toMap(),
+      'is_Admin': isAdmin,
     };
   }
 

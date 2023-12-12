@@ -1,3 +1,8 @@
+androidx/activity/result/IntentSenderRequest$Builder$Flag.class
+androidx/activity/result/contract/ActivityResultContracts$CreateDocument.class
+androidx/activity/result/contract/ActivityResultContracts$PickVisualMedia$Companion.class
+androidx/activity/result/contract/ActivityResultContracts$PickVisualMedia.class
+androidx/activity/result/contract/ActivityResultContracts$TakeVideo.class
 androidx/annotation/AnimRes.class
 androidx/annotation/AnimatorRes.class
 androidx/annotation/AnyRes.class
@@ -129,9 +134,17 @@ androidx/core/view/WindowInsetsAnimationCompat$Callback$DispatchMode.class
 androidx/core/view/WindowInsetsCompat$Type$InsetsType.class
 androidx/core/view/accessibility/AccessibilityEventCompat$ContentChangeType.class
 androidx/core/widget/TextViewCompat$AutoSizeTextType.class
+androidx/exifinterface/media/ExifInterface$ExifStreamType.class
+androidx/exifinterface/media/ExifInterface$IfdType.class
 androidx/fragment/app/FragmentStateManagerControl.class
 androidx/lifecycle/Lifecycle$Event.class
+androidx/lifecycle/LifecycleCoroutineScope.class
+androidx/lifecycle/LifecycleRegistry.class
 androidx/lifecycle/OnLifecycleEvent.class
+androidx/lifecycle/PausingDispatcherKt.class
+androidx/lifecycle/Transformations.class
+androidx/lifecycle/ViewTreeViewModelKt.class
+androidx/lifecycle/viewmodel/ViewModelFactoryDsl.class
 androidx/multidex/MultiDex$V14$ElementConstructor.class
 androidx/multidex/MultiDex$V14$ICSElementConstructor.class
 androidx/multidex/MultiDex$V14$JBMR11ElementConstructor.class
@@ -146,6 +159,9 @@ androidx/multidex/MultiDexExtractor$ExtractedDex.class
 androidx/multidex/MultiDexExtractor.class
 androidx/multidex/ZipUtil$CentralDirectory.class
 androidx/multidex/ZipUtil.class
+androidx/profileinstaller/ProfileInstaller$DiagnosticCode.class
+androidx/profileinstaller/ProfileInstaller$ResultCode.class
+androidx/profileinstaller/ProfileVerifier$CompilationStatus$ResultCode.class
 androidx/versionedparcelable/NonParcelField.class
 androidx/versionedparcelable/ParcelField.class
 androidx/versionedparcelable/VersionedParcelize.class

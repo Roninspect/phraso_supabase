@@ -22,7 +22,7 @@ class TripListView extends ConsumerWidget {
             itemBuilder: (context, index) {
               final trip = trips[index];
 
-              return TripCard(plannerModel: trip.itineraries);
+              return TripCard(plannerModel: trip.itineraries!);
             },
           );
         },

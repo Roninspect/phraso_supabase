@@ -48,6 +48,7 @@ class Plannerpage extends ConsumerWidget {
           boxShadow: [BoxShadow(color: Colors.black, offset: Offset(1.5, 1.5))],
         ),
         child: FloatingActionButton(
+          heroTag: null,
           shape: const CircleBorder(
             side: BorderSide(
               width: 1.7,
