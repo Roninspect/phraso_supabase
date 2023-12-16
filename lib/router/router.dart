@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:phraso/features/languages/pages/language_page.dart';
 import 'package:phraso/features/languages/pages/language_search_page.dart';
 import 'package:phraso/features/phrases/pages/phrase_search_page.dart';
+import 'package:phraso/features/planner/pages/add_activities_page.dart';
 import 'package:phraso/features/planner/pages/create_plan.dart';
+import 'package:phraso/features/planner/pages/planned_days_page.dart';
 import 'package:phraso/features/planner/pages/planner_page.dart';
 import 'package:phraso/features/root/pages/root_page.dart';
 import 'package:phraso/features/types_of_phrases/pages/top_page.dart';
@@ -29,7 +31,9 @@ enum AppRoutes {
   trip,
   addTrip,
   languageSearch,
-  phraseSearch
+  phraseSearch,
+  itinerary,
+  edit_activities,
 }
 
 final routerProvider = riverpod.Provider<GoRouter>((ref) {
@@ -67,6 +71,7 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
                       state.extra as LanguageModel;
                   final String languageName =
                       state.pathParameters['languageName']!;
+
                   return TypesOfPhrases(
                     language: languageModel,
                     languageName: languageName,
@@ -104,6 +109,32 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
                 return const CreateTrip();
               },
             ),
+            GoRoute(
+                path: ':itineraryId',
+                name: AppRoutes.itinerary.name,
+                builder: (context, state) {
+                  state.pathParameters['itineraryId']!;
+
+                  return PlannedDaysPage(
+                      itineraryModel: state.extra as ItineraryModel);
+                },
+                routes: [
+                  GoRoute(
+                    path: ':day_id',
+                    name: AppRoutes.edit_activities.name,
+                    builder: (context, state) {
+                      final String? day_id = state.pathParameters['day_id']!;
+
+                      final String? tripId =
+                          state.pathParameters['itineraryId']!;
+
+                      final DateTime dayDate = state.extra as DateTime;
+
+                      return AddActivitiesPage(
+                          tripId: tripId!, day_id: day_id!, dayDate: dayDate);
+                    },
+                  )
+                ])
           ])
     ],
     redirect: (context, state) async {

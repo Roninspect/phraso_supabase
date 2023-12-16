@@ -30,6 +30,7 @@ class FlagListViewBuilder extends ConsumerWidget {
             child: CircleAvatar(
               radius: 15,
               backgroundImage: CachedNetworkImageProvider(
+                cacheKey: languageModel.flags[index].flag_url,
                   languageModel.flags[index].flag_url),
             ),
           ),

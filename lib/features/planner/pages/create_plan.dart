@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:phraso/core/colors/colors.dart';
+import 'package:phraso/core/common/curtom_back_button.dart';
 import 'package:phraso/core/common/custom_snackbar.dart';
 import 'package:phraso/core/common/loader.dart';
 import 'package:phraso/core/constants/spacings.dart';
@@ -80,6 +81,8 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
+         automaticallyImplyLeading: false,
+            leading: const CustomBackButton(),
         backgroundColor: yellowColor,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(4.0),
@@ -133,10 +136,12 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
                       padding: const EdgeInsets.all(10),
                       child: TextField(
                         controller: itineraryNameController,
+                         maxLength: 18,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Itinerary Name',
                           hintText: "Trip to Paris...",
+                          
                         ),
                       ),
                     ),

@@ -37,7 +37,7 @@ class PhrasesPage extends ConsumerWidget {
         ),
         leading: const CustomBackButton(),
         backgroundColor: Color(int.parse(typesOfPhrasesmodel.color)),
-        toolbarHeight: 100,
+        toolbarHeight: 80,
         title: Column(
           children: [
             Text(nameOfType),

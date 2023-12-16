@@ -9,7 +9,7 @@ import 'package:phraso/models/itinerary_model.dart';
 import 'package:phraso/router/router.dart';
 import '../../../core/colors/colors.dart';
 
-class TripCard extends ConsumerWidget {
+class TripCard extends ConsumerStatefulWidget {
   final ItineraryModel plannerModel;
   const TripCard({
     super.key,
@@ -17,7 +17,13 @@ class TripCard extends ConsumerWidget {
   });
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ConsumerStatefulWidget> createState() => _TripCardState();
+}
+
+class _TripCardState extends ConsumerState<TripCard> {
+  @override
+  Widget build(BuildContext context) {
+    final ItineraryModel plannerModel = widget.plannerModel;
     //** formatting the dates and time */
     DateTime now = DateTime.now();
     DateTime targetDate = plannerModel.start_date;
@@ -40,10 +46,9 @@ class TripCard extends ConsumerWidget {
 
     return GestureDetector(
       onTap: () {
-        // context.pushNamed(AppRoutes.trip.name,
-        //     pathParameters: {'tripName': plannerModel.tripName},
-        //     extra: plannerModel);
-        showSnackbar(context: context, text: "unmplemented");
+        context.pushNamed(AppRoutes.itinerary.name,
+            pathParameters: {'itineraryId': widget.plannerModel.tripId},
+            extra: widget.plannerModel);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -91,11 +96,19 @@ class TripCard extends ConsumerWidget {
                         height: 34,
                         width: 80,
                         child: Center(
-                          child: Text(
-                            '${daysLeft.toString()} days left',
-                            style: const TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold),
-                          ),
+                          child: daysLeft <= 0
+                              ? const Text(
+                                  'Now',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              : Text(
+                                  '${daysLeft.toString()} days left',
+                                  style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                ),
                         )),
                   ],
                 ),

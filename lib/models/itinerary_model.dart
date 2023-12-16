@@ -1,9 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, non_constant_identifier_names
 import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
-
-import 'package:phraso/models/itinerary_member.dart';
 
 class ItineraryModel {
   final String tripId;
@@ -14,6 +10,7 @@ class ItineraryModel {
   final DateTime end_date;
   final String creatorId;
   final String place;
+  final bool is_active;
   ItineraryModel({
     required this.tripId,
     this.created_at,
@@ -23,6 +20,7 @@ class ItineraryModel {
     required this.end_date,
     required this.creatorId,
     required this.place,
+    required this.is_active
   });
 
   ItineraryModel copyWith({
@@ -34,6 +32,8 @@ class ItineraryModel {
     DateTime? end_date,
     String? creatorId,
     String? place,
+    bool? is_active,
+
   }) {
     return ItineraryModel(
       tripId: tripId ?? this.tripId,
@@ -44,6 +44,7 @@ class ItineraryModel {
       end_date: end_date ?? this.end_date,
       creatorId: creatorId ?? this.creatorId,
       place: place ?? this.place,
+      is_active: is_active ?? this.is_active,
     );
   }
 
@@ -56,6 +57,7 @@ class ItineraryModel {
       'end_date': end_date.toString(),
       'creatorId': creatorId,
       'place': place,
+      'is_active': is_active,
     };
   }
 
@@ -69,6 +71,7 @@ class ItineraryModel {
       end_date: DateTime.parse(map['end_date'] as String),
       creatorId: map['creatorId'] as String,
       place: map['place'] as String,
+      is_active: map['is_active'] as bool,
     );
   }
 
@@ -79,7 +82,7 @@ class ItineraryModel {
 
   @override
   String toString() {
-    return 'ItineraryModel(tripId: $tripId, created_at: $created_at, tripName: $tripName, background: $background, start_date: $start_date, end_date: $end_date, creatorId: $creatorId, place: $place)';
+    return 'ItineraryModel(tripId: $tripId, created_at: $created_at, tripName: $tripName, background: $background, start_date: $start_date, end_date: $end_date, creatorId: $creatorId, place: $place, "is_active": $is_active)';
   }
 
   @override
@@ -93,7 +96,8 @@ class ItineraryModel {
         other.start_date == start_date &&
         other.end_date == end_date &&
         other.creatorId == creatorId &&
-        other.place == place;
+        other.place == place && 
+        other.is_active == is_active;
   }
 
   @override
@@ -105,6 +109,7 @@ class ItineraryModel {
         start_date.hashCode ^
         end_date.hashCode ^
         creatorId.hashCode ^
+        is_active.hashCode ^
         place.hashCode;
   }
 }

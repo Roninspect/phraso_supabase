@@ -1,11 +1,14 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:phraso/core/common/custom_snackbar.dart';
+import 'package:phraso/core/constants/default_background.dart';
 import 'package:phraso/core/helper/image_uploader.dart';
 import 'package:phraso/features/planner/repository/planner_repository.dart';
+import 'package:phraso/models/activities.dart';
+import 'package:phraso/models/planned_days_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 final plannerControllerProvider =
@@ -46,12 +49,11 @@ class PlannerController extends StateNotifier<bool> {
 
       imageRes.fold((l) {
         showSnackbar(context: context, text: l.message);
-        print(l.message);
       }, (r) {
         newImage = r;
       });
     } else {
-      newImage = '';
+      newImage = defaultbackground;
     }
 
     final res = await _plannerRepository.createPlan(
@@ -69,5 +71,52 @@ class PlannerController extends StateNotifier<bool> {
         context.pop();
       },
     );
+  }
+
+  Future<void> addActivites(
+      {required String plannedDaysId,
+      required String tripId,
+      required String place,
+      required DateTime startTime,
+      required BuildContext context,
+      required WidgetRef ref,
+      required DateTime endTime}) async {
+    final newActivity = Activities(
+        pdId: plannedDaysId,
+        isPassed: false,
+        place: place,
+        tripId: tripId,
+        startTime: startTime,
+        endTime: endTime);
+
+    state = true;
+
+    final res = await _plannerRepository.addActivites(activitiy: newActivity);
+
+    state = false;
+
+    res.fold((l) => showSnackbar(context: context, text: l.message), (r) {
+      ref.invalidate(getAllActivitiesByIdProvider(plannedDaysId));
+      context.pop();
+    });
+  }
+
+  Future<void> addAnotherDay(
+      {required DateTime newDate,
+      required String itinerary_id,
+      required WidgetRef ref,
+      required BuildContext context}) async {
+    final PlannedDaysModel newPlannedDays =
+        PlannedDaysModel(day_date: newDate, itinerary_id: itinerary_id);
+
+    state = true;
+
+    final res = await _plannerRepository.addAnotherDay(
+        plannedDaysModel: newPlannedDays);
+
+    state = false;
+
+    res.fold((l) => showSnackbar(context: context, text: l.message),
+        (r) => ref.invalidate(getPlannedDaysProvider));
   }
 }

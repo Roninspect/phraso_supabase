@@ -1,0 +1,1 @@
+ G:\\Flutter\ projects\\phraso_supabse\\phraso\\phraso\\.dart_tool\\flutter_build\\8814ef66bd3c4225823174604dc3816a\\native_assets.yaml: 

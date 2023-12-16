@@ -29,21 +29,18 @@ class TypesOfPhrases extends ConsumerWidget {
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
-              toolbarHeight: 80,
+              toolbarHeight: 50,
               floating: false,
               pinned: true,
               centerTitle: true,
               automaticallyImplyLeading: false,
-              leading: const Padding(
-                padding: EdgeInsets.only(top: 15.0),
-                child: CustomBackButton(),
-              ),
+              leading: const CustomBackButton(),
               backgroundColor: Color(int.parse(language.color)),
               expandedHeight: 260,
               flexibleSpace: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   final bool isCollapsed =
-                      constraints.maxHeight - kToolbarHeight - 80 <= 0;
+                      constraints.maxHeight - kToolbarHeight - 60 <= 0;
 
                   return FlexibleSpaceBar(
                     title: isCollapsed ? Text("$languageName Phrases") : null,
@@ -52,6 +49,7 @@ class TypesOfPhrases extends ConsumerWidget {
                         fit: StackFit.expand,
                         children: [
                           CachedNetworkImage(
+                            cacheKey: language.id,
                             imageUrl: language.background,
                             fit: BoxFit.cover,
                             color: Colors.black54,

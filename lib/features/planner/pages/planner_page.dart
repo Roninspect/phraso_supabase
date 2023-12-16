@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
 import 'package:phraso/core/colors/colors.dart';
+import 'package:phraso/core/constants/spacings.dart';
 import 'package:phraso/features/planner/widgets/trip_listview.dart';
 import 'package:phraso/router/router.dart';
 
@@ -15,10 +16,13 @@ class Plannerpage extends ConsumerWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         centerTitle: true,
-        toolbarHeight: MediaQuery.of(context).size.height * 0.1,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.03,
         title: const Text("Trip Planner"),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Octicons.history))
+        actions: const [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Icon(Octicons.history),
+          )
         ],
       ),
       body: const Padding(
@@ -26,6 +30,8 @@ class Plannerpage extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            smallSpacing,
+            smallSpacing,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -47,7 +53,7 @@ class Plannerpage extends ConsumerWidget {
           shape: BoxShape.circle,
           boxShadow: [BoxShadow(color: Colors.black, offset: Offset(1.5, 1.5))],
         ),
-        child: FloatingActionButton(
+        child: FloatingActionButton.extended(
           heroTag: null,
           shape: const CircleBorder(
             side: BorderSide(
@@ -56,7 +62,7 @@ class Plannerpage extends ConsumerWidget {
           ),
           backgroundColor: yellowColor,
           elevation: 0,
-          child: const Icon(Icons.add, color: Colors.black, size: 28),
+          label: const Icon(Icons.add, color: Colors.black, size: 28),
           onPressed: () {
             context.pushNamed(AppRoutes.addTrip.name);
           },

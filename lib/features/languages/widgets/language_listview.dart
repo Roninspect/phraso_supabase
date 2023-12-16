@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../core/common/language_tile.dart';
+import 'language_tile.dart';
 import '../../../core/helper/async_value_helper.dart';
 import '../../../models/language_model.dart';
 import '../controller/language_controller.dart';

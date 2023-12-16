@@ -46,7 +46,7 @@ class _LanguagepageState extends ConsumerState<Languagepage>
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
-        toolbarHeight: MediaQuery.of(context).size.height * 0.04,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.02,
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),

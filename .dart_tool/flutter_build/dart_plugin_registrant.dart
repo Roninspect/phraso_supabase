@@ -26,6 +26,7 @@ import 'package:path_provider_linux/path_provider_linux.dart';
 import 'package:shared_preferences_linux/shared_preferences_linux.dart';
 import 'package:url_launcher_linux/url_launcher_linux.dart';
 import 'package:file_selector_macos/file_selector_macos.dart';
+import 'package:google_sign_in_ios/google_sign_in_ios.dart';
 import 'package:image_picker_macos/image_picker_macos.dart';
 import 'package:path_provider_foundation/path_provider_foundation.dart';
 import 'package:shared_preferences_foundation/shared_preferences_foundation.dart';
@@ -222,6 +223,15 @@ class _PluginRegistrant {
       } catch (err) {
         print(
           '`file_selector_macos` threw an error: $err. '
+          'The app may not function as expected until you remove this plugin from pubspec.yaml'
+        );
+      }
+
+      try {
+        GoogleSignInIOS.registerWith();
+      } catch (err) {
+        print(
+          '`google_sign_in_ios` threw an error: $err. '
           'The app may not function as expected until you remove this plugin from pubspec.yaml'
         );
       }

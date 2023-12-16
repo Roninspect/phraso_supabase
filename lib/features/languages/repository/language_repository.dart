@@ -35,7 +35,7 @@ class LanguageRepository {
     try {
       return right(
         await _client.from("followings").insert(
-          {"lang_Id": langId, "uid": uid},
+          {"lang_id": langId, "uid": uid},
         ),
       );
     } catch (e) {
@@ -67,10 +67,10 @@ class LanguageRepository {
       {required String uid, required String langId}) async {
     final res = await _client
         .from('followings')
-        .select('uid, lang_Id',
+        .select('uid, lang_id',
             const supabase.FetchOptions(count: supabase.CountOption.exact))
         .eq('uid', uid)
-        .eq('lang_Id', langId);
+        .eq('lang_id', langId);
 
     int count = res.count;
 
@@ -92,7 +92,7 @@ class LanguageRepository {
       return right(await _client
           .from('followings')
           .delete()
-          .match({'uid': uid, 'lang_Id': langId}));
+          .match({'uid': uid, 'lang_id': langId}));
     } catch (e) {
       return left(Failure(e.toString()));
     }
