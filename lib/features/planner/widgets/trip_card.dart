@@ -24,14 +24,21 @@ class _TripCardState extends ConsumerState<TripCard> {
   @override
   Widget build(BuildContext context) {
     final ItineraryModel plannerModel = widget.plannerModel;
-    //** formatting the dates and time */
+
+    //** calculating is trip running or not */
+
     DateTime now = DateTime.now();
     DateTime targetDate = plannerModel.start_date;
     Duration difference = targetDate.difference(now);
+    bool isRunning = plannerModel.start_date.isBefore(now) &&
+        plannerModel.end_date.isAfter(now);
+    bool isPast = plannerModel.start_date.isBefore(now) &&
+        plannerModel.end_date.isBefore(now);
     int daysLeft = difference.inDays;
 
-    DateTime startDate = plannerModel.start_date;
-    String formattedStartDate = DateFormat('MMM d').format(startDate);
+    //** formatting the dates and time */
+    String formattedStartDate =
+        DateFormat('MMM d').format(plannerModel.start_date);
     String shortenedStartDate = formattedStartDate.length > 5
         ? formattedStartDate.substring(0, 4) +
             formattedStartDate.substring(formattedStartDate.indexOf(' '))
@@ -46,9 +53,10 @@ class _TripCardState extends ConsumerState<TripCard> {
 
     return GestureDetector(
       onTap: () {
-        context.pushNamed(AppRoutes.itinerary.name,
-            pathParameters: {'itineraryId': widget.plannerModel.tripId},
-            extra: widget.plannerModel);
+        context.pushNamed(
+          AppRoutes.itinerary.name,
+          pathParameters: {'itineraryId': widget.plannerModel.tripId},
+        );
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -96,19 +104,27 @@ class _TripCardState extends ConsumerState<TripCard> {
                         height: 34,
                         width: 80,
                         child: Center(
-                          child: daysLeft <= 0
+                          child: isRunning
                               ? const Text(
                                   'Now',
                                   style: TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                 )
-                              : Text(
-                                  '${daysLeft.toString()} days left',
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.bold),
-                                ),
+                              : isPast
+                                  ? Text(
+                                      DateFormat('MMM d')
+                                          .format(plannerModel.start_date),
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  : Text(
+                                      '${daysLeft.toString()} days left',
+                                      style: const TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                         )),
                   ],
                 ),

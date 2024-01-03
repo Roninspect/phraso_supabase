@@ -163,8 +163,9 @@ class LanguageTile extends ConsumerWidget {
                               );
                             }
                           },
-                          error: (error, stackTrace) => showSnackbar(
-                              context: context, text: "something went wrong"),
+                          error: (error, stackTrace) {
+                            return Text(error.toString());
+                          },
                           loading: () => Container(
                               decoration: BoxDecoration(
                                   color: const Color(0xffFFBD12),

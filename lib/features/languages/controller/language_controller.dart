@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/common/custom_snackbar.dart';
+import 'package:phraso/core/helper/connection_notifier.dart';
+import 'package:phraso/features/languages/data/local/local_language_repository.dart';
 import 'package:phraso/features/languages/provider/search_query_provider.dart';
-import 'package:phraso/features/languages/repository/language_repository.dart';
+import 'package:phraso/features/languages/data/remote/language_repository.dart';
 import 'package:phraso/models/following_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
@@ -13,7 +15,10 @@ import '../../../models/language_model.dart';
 final languageControllerProvider =
     StateNotifierProvider<LanguageController, bool>((ref) {
   return LanguageController(
-      languageRepository: ref.watch(languageRepositroyProvider));
+    languageRepository: ref.watch(languageRepositroyProvider),
+    localLanguageRepository: ref.watch(localLanguageRepositoryProvider),
+    ref: ref,
+  );
 });
 
 final getAllLanguageProvider =
@@ -65,15 +70,40 @@ final isFollowingAlreadyProvider =
 
 class LanguageController extends StateNotifier<bool> {
   final LanguageRepository _languageRepository;
-  LanguageController({required LanguageRepository languageRepository})
+  final LocalLanguageRepository _localLanguageRepository;
+  final Ref _ref;
+  LanguageController(
+      {required LanguageRepository languageRepository,
+      required LocalLanguageRepository localLanguageRepository,
+      required Ref ref})
       : _languageRepository = languageRepository,
+        _localLanguageRepository = localLanguageRepository,
+        _ref = ref,
         super(false);
 
   final uid = supabase.Supabase.instance.client.auth.currentUser!.id;
 
   Future<List<LanguageModel>> getAllLanguage() async {
     try {
-      return await _languageRepository.getAllLanguage();
+      ConnectivityStatus connectivityStatus =
+          _ref.watch(connectionStateNotifierProvider);
+      final List<LanguageModel> isAllLanguageAvailable =
+          await _localLanguageRepository.getAllLocalLanguages();
+
+      if (connectivityStatus == ConnectivityStatus.isConnected) {
+        if (isAllLanguageAvailable.isEmpty) {
+          final remoteList = await _languageRepository.getAllLanguage();
+
+          await Future.wait(remoteList.map((e) async {
+            await _localLanguageRepository.insertSingleLanguage(language: e);
+          }));
+
+          return await _localLanguageRepository.getAllLocalLanguages();
+        }
+        return await _localLanguageRepository.getAllLocalLanguages();
+      } else {
+        return await _localLanguageRepository.getAllLocalLanguages();
+      }
     } catch (e) {
       throw e.toString();
     }
@@ -87,10 +117,7 @@ class LanguageController extends StateNotifier<bool> {
     final res =
         await _languageRepository.followLanguage(uid: uid, langId: langId);
     state = false;
-    res.fold((l) {
-      print(l.message);
-      return showSnackbar(context: context, text: l.message);
-    }, (r) {
+    res.fold((l) {}, (r) {
       ref.refresh(getFollowingLanguageProvider);
       ref.refresh(isFollowingAlreadyProvider(langId));
     });
@@ -116,8 +143,7 @@ class LanguageController extends StateNotifier<bool> {
     final res =
         await _languageRepository.deleteTheFollowing(uid: uid, langId: langId);
     state = false;
-    res.fold((l) => showSnackbar(context: context, text: "Some Error Occured"),
-        (r) {
+    res.fold((l) => null, (r) {
       ref.refresh(getFollowingLanguageProvider);
       ref.refresh(isFollowingAlreadyProvider(langId));
     });

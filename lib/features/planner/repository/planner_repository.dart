@@ -43,6 +43,15 @@ final getTripsProvider = FutureProvider<List<ItineraryMember>>((ref) {
       .getTrips(uid: supabase.Supabase.instance.client.auth.currentUser!.id);
 });
 
+final getSingleItineraryProvider =
+    FutureProvider.family<ItineraryModel, String>((ref, tripId) async {
+  return ref.watch(plannerRepositoryrovider).getSingleItinerary(tripId: tripId);
+});
+final getPassedTripsProvider = FutureProvider<List<ItineraryMember>>((ref) {
+  return ref.watch(plannerRepositoryrovider).getPassedTrips(
+      uid: supabase.Supabase.instance.client.auth.currentUser!.id);
+});
+
 final getPlannedDaysProvider =
     FutureProvider.family<List<PlannedDaysModel>, String>(
         (ref, itineraryId) async {
@@ -95,6 +104,43 @@ class PlannerRepository {
           res.map((e) => ItineraryMember.fromMap(e)).toList();
 
       return itineraries;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+  //** getting all expired passed Itineraries that is Active */
+
+  Future<List<ItineraryMember>> getPassedTrips({required String uid}) async {
+    try {
+      final List<dynamic> res = await _client
+          .from('itinerary_members')
+          .select('*, itineraries!inner(*)')
+          .eq('userId', uid)
+          .eq('itineraries.is_active', true)
+          .lt('itineraries.end_date', DateTime.now());
+
+      List<ItineraryMember> itineraries =
+          res.map((e) => ItineraryMember.fromMap(e)).toList();
+
+      return itineraries;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  //* get single itinerary by ID
+
+  Future<ItineraryModel> getSingleItinerary({required String tripId}) async {
+    try {
+      final res = await _client
+          .from('itineraries')
+          .select('*')
+          .eq('tripId', tripId)
+          .single();
+
+      final ItineraryModel itineraryModel = ItineraryModel.fromMap(res);
+
+      return itineraryModel;
     } catch (e) {
       throw e.toString();
     }
@@ -198,27 +244,24 @@ class PlannerRepository {
     }
   }
 
-  //* convert isPassed to true to all passed activites
-
-  Future<void> makePassedActivitiesTrue(
-      {required List<Activities> activities}) async {
-    try {
-      final List<Map<String, dynamic>> updateData = activities
-          .where((e) => e.endTime.isBefore(DateTime.now()))
-          .map((e) => e.copyWith(isPassed: true).toMap()) // Corrected line
-          .toList();
-
-      await _client.from('activities').upsert(updateData);
-    } catch (e) {
-      throw e.toString();
-    }
-  }
-
   //** add activities */
 
   FutureVoid addActivites({required Activities activitiy}) async {
     try {
       return right(await _client.from('activities').insert(activitiy.toMap()));
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
+
+  //* delete activity by id
+
+  FutureVoid deleteActivity({required String activityId}) async {
+    try {
+      return right(await _client
+          .from('activities')
+          .delete()
+          .eq('activities_id', activityId));
     } catch (e) {
       return left(Failure(e.toString()));
     }

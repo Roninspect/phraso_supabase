@@ -67,9 +67,9 @@ class TypesOfPhrases extends ConsumerWidget {
                                   style: const TextStyle(
                                       fontSize: 35, color: sliverTextColor),
                                 ),
-                                Text(
-                                  "${language.numberOfPhrases} phrases",
-                                  style: const TextStyle(
+                                const Text(
+                                  "${0} phrases",
+                                  style: TextStyle(
                                       fontSize: 21, color: sliverTextColor),
                                 ),
                               ],

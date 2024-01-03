@@ -83,7 +83,6 @@ class PlannerController extends StateNotifier<bool> {
       required DateTime endTime}) async {
     final newActivity = Activities(
         pdId: plannedDaysId,
-        isPassed: false,
         place: place,
         tripId: tripId,
         startTime: startTime,
@@ -118,5 +117,18 @@ class PlannerController extends StateNotifier<bool> {
 
     res.fold((l) => showSnackbar(context: context, text: l.message),
         (r) => ref.invalidate(getPlannedDaysProvider));
+  }
+
+  Future<void> deleteActivity(
+      {required String activityId,
+      required BuildContext context,
+      required String plannedDaysId,
+      required WidgetRef ref}) async {
+    state = true;
+    final res = await _plannerRepository.deleteActivity(activityId: activityId);
+    state = false;
+
+    res.fold((l) => showSnackbar(context: context, text: l.message),
+        (r) => ref.invalidate(getAllActivitiesByIdProvider(plannedDaysId)));
   }
 }

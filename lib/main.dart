@@ -38,9 +38,7 @@ class _MyAppState extends ConsumerState<MyApp> {
             GoogleFonts.montserrat(fontWeight: FontWeight.bold).fontFamily,
         useMaterial3: true,
       ),
-      routeInformationParser: router.routeInformationParser,
-      routeInformationProvider: router.routeInformationProvider,
-      routerDelegate: router.routerDelegate,
+      routerConfig: router,
     );
   }
 }

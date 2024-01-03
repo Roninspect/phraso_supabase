@@ -4,12 +4,14 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:phraso/core/colors/colors.dart';
 
 import 'package:phraso/core/constants/spacings.dart';
+import 'package:phraso/core/helper/connection_notifier.dart';
 
 import 'package:phraso/features/auth/provider/user_data_notifer.dart';
 import 'package:phraso/features/languages/widgets/following_listview.dart';
 
 import 'package:phraso/features/languages/widgets/language_listview.dart';
 import 'package:phraso/features/languages/widgets/language_search_BTN.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 class Languagepage extends ConsumerStatefulWidget {
   const Languagepage({super.key});
@@ -55,9 +57,13 @@ class _LanguagepageState extends ConsumerState<Languagepage>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                greetingText,
-                style: const TextStyle(fontSize: 20, color: greyColor),
+              GestureDetector(
+                onTap: () async =>
+                    await supabase.Supabase.instance.client.auth.signOut(),
+                child: Text(
+                  greetingText,
+                  style: const TextStyle(fontSize: 20, color: greyColor),
+                ),
               ),
               Text(
                 userName,

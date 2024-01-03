@@ -49,6 +49,10 @@ dependencies:
   timelines: ^0.1.0
   timeline_tile: ^2.0.0
   uuid: ^4.2.1
+  sqflite: ^2.3.0
+  connectivity_plus: ^5.0.2
+  share_plus: ^7.2.1
+  rename: ^3.0.1
 
 dev_dependencies:
   build_runner: ^2.4.7

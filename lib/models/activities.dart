@@ -4,7 +4,6 @@ import 'dart:convert';
 class Activities {
   String? activitiesId;
   final String pdId;
-  final bool isPassed;
   final String place;
   final DateTime startTime;
   final DateTime endTime;
@@ -12,7 +11,6 @@ class Activities {
   Activities({
     this.activitiesId,
     required this.pdId,
-    required this.isPassed,
     required this.place,
     required this.startTime,
     required this.endTime,
@@ -22,7 +20,6 @@ class Activities {
   Activities copyWith({
     String? activitiesId,
     String? pdId,
-    bool? isPassed,
     String? place,
     DateTime? startTime,
     DateTime? endTime,
@@ -31,7 +28,6 @@ class Activities {
     return Activities(
         activitiesId: activitiesId ?? this.activitiesId,
         pdId: pdId ?? this.pdId,
-        isPassed: isPassed ?? this.isPassed,
         place: place ?? this.place,
         startTime: startTime ?? this.startTime,
         endTime: endTime ?? this.endTime,
@@ -41,7 +37,6 @@ class Activities {
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'pd_id': pdId,
-      'is_passed': isPassed,
       'place': place,
       'start_time': startTime.toString(),
       'end_time': endTime.toString(),
@@ -53,7 +48,6 @@ class Activities {
     return Activities(
         activitiesId: map['activities_id'] as String,
         pdId: map['pd_id'] as String,
-        isPassed: map['is_passed'] as bool,
         place: map['place'] as String,
         startTime: DateTime.parse(map['start_time'] as String),
         endTime: DateTime.parse(map['end_time'] as String),
@@ -67,7 +61,7 @@ class Activities {
 
   @override
   String toString() {
-    return 'Activities(activitiesId: $activitiesId, pdId: $pdId, isPassed: $isPassed, place: $place, startTime: $startTime, endTime: $endTime, tripId: $tripId)';
+    return 'Activities(activitiesId: $activitiesId, pdId: $pdId, place: $place, startTime: $startTime, endTime: $endTime, tripId: $tripId)';
   }
 
   @override
@@ -76,7 +70,6 @@ class Activities {
 
     return other.activitiesId == activitiesId &&
         other.pdId == pdId &&
-        other.isPassed == isPassed &&
         other.place == place &&
         other.startTime == startTime &&
         other.endTime == endTime &&
@@ -87,7 +80,6 @@ class Activities {
   int get hashCode {
     return activitiesId.hashCode ^
         pdId.hashCode ^
-        isPassed.hashCode ^
         place.hashCode ^
         startTime.hashCode ^
         endTime.hashCode ^

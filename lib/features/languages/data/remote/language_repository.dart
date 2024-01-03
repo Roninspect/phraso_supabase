@@ -18,6 +18,7 @@ class LanguageRepository {
   //* get all languages
   Future<List<LanguageModel>> getAllLanguage() async {
     try {
+      print('called');
       final List<dynamic> res =
           await _client.from('languages').select('*, flags(*)');
       List<LanguageModel> languages =

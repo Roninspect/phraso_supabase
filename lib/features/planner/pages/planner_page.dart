@@ -18,10 +18,12 @@ class Plannerpage extends ConsumerWidget {
         centerTitle: true,
         toolbarHeight: MediaQuery.of(context).size.height * 0.03,
         title: const Text("Trip Planner"),
-        actions: const [
+        actions: [
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: Icon(Octicons.history),
+            child: InkWell(
+                onTap: () => context.pushNamed(AppRoutes.passedTrips.name),
+                child: Icon(Octicons.history)),
           )
         ],
       ),

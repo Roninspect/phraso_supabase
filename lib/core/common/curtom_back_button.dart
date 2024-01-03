@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phraso/features/languages/provider/search_query_provider.dart';
-import 'package:phraso/features/phrases/providers/search_query_provider.dart';
 
 class CustomBackButton extends ConsumerWidget {
   const CustomBackButton({super.key});

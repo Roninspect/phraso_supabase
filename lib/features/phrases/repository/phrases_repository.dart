@@ -80,9 +80,11 @@ class PhrasesRepository {
       final res = await _client
           .from('favourites')
           .select(
-              'uid, langId',
-              const supabase.FetchOptions(
-                  count: supabase.CountOption.estimated))
+            'uid, langId',
+            const supabase.FetchOptions(
+              count: supabase.CountOption.exact,
+            ),
+          )
           .eq('uid', uid)
           .eq('phraseId', phraseId)
           .eq('langId', langId);

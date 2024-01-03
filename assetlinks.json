@@ -1,0 +1,5 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.example.phrasoo",
+               "sha256_cert_fingerprints": ["B0:07:EE:C6:ED:BD:E8:5D:40:BA:2B:BA:98:7E:11:DF:29:2A:61:AB:E7:62:77:B6:9C:AC:D6:08:51:CD:A1:22"] }
+}]

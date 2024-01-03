@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import 'package:phraso/core/colors/colors.dart';
+import 'package:phraso/core/common/curtom_back_button.dart';
 import 'package:phraso/core/common/loader.dart';
 import 'package:phraso/core/constants/spacings.dart';
 import 'package:phraso/features/planner/controller/planner_controller.dart';
@@ -68,6 +69,8 @@ class _AddActivitiesPageState extends ConsumerState<AddActivitiesPage> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: const CustomBackButton(),
         title: const Text("Add an Activity"),
       ),
       body: Padding(
@@ -86,6 +89,9 @@ class _AddActivitiesPageState extends ConsumerState<AddActivitiesPage> {
                         itemCount: data.length,
                         itemBuilder: (context, index) {
                           final singleDay = data[index];
+                          final bool isTimePassed =
+                              singleDay.day_date.isAfter(DateTime.now()) ||
+                                  singleDay.day_date.day == DateTime.now().day;
 
                           final formattedDate =
                               DateFormat('dd MMM').format(singleDay.day_date);
@@ -95,15 +101,19 @@ class _AddActivitiesPageState extends ConsumerState<AddActivitiesPage> {
                                 const EdgeInsets.symmetric(horizontal: 8.0),
                             child: GestureDetector(
                                 onTap: () {
-                                  setState(() {
-                                    selectedDay = singleDay;
-                                  });
+                                  if (isTimePassed) {
+                                    setState(() {
+                                      selectedDay = singleDay;
+                                    });
+                                  }
                                 },
                                 child: Chip(
                                     backgroundColor: selectedDay == singleDay &&
                                             selectedDay != null
                                         ? yellowColor
-                                        : Colors.white,
+                                        : isTimePassed
+                                            ? Colors.white
+                                            : Colors.grey[400],
                                     label: Text(formattedDate))),
                           );
                         },
@@ -165,23 +175,24 @@ class _AddActivitiesPageState extends ConsumerState<AddActivitiesPage> {
                         ref
                             .watch(plannerControllerProvider.notifier)
                             .addActivites(
-                                ref: ref,
-                                plannedDaysId: selectedDay!.day_id!,
-                                tripId: widget.tripId,
-                                place: activitiesController.text,
-                                startTime: DateTime(
-                                    selectedDay!.day_date.year,
-                                    selectedDay!.day_date.month,
-                                    selectedDay!.day_date.day,
-                                    startTime.hour,
-                                    startTime.minute),
-                                context: context,
-                                endTime: DateTime(
-                                    selectedDay!.day_date.year,
-                                    selectedDay!.day_date.month,
-                                    selectedDay!.day_date.day,
-                                    endTime.hour,
-                                    endTime.minute));
+                              ref: ref,
+                              plannedDaysId: selectedDay!.day_id!,
+                              tripId: widget.tripId,
+                              place: activitiesController.text,
+                              startTime: DateTime(
+                                  selectedDay!.day_date.year,
+                                  selectedDay!.day_date.month,
+                                  selectedDay!.day_date.day,
+                                  startTime.hour,
+                                  startTime.minute),
+                              context: context,
+                              endTime: DateTime(
+                                  selectedDay!.day_date.year,
+                                  selectedDay!.day_date.month,
+                                  selectedDay!.day_date.day,
+                                  endTime.hour,
+                                  endTime.minute),
+                            );
                       },
                     ),
                   ),

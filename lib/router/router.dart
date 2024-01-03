@@ -6,16 +6,14 @@ import 'package:phraso/features/languages/pages/language_search_page.dart';
 import 'package:phraso/features/phrases/pages/phrase_search_page.dart';
 import 'package:phraso/features/planner/pages/add_activities_page.dart';
 import 'package:phraso/features/planner/pages/create_plan.dart';
+import 'package:phraso/features/planner/pages/past_trips_page.dart';
 import 'package:phraso/features/planner/pages/planned_days_page.dart';
 import 'package:phraso/features/planner/pages/planner_page.dart';
 import 'package:phraso/features/root/pages/root_page.dart';
 import 'package:phraso/features/types_of_phrases/pages/top_page.dart';
-import 'package:phraso/models/itinerary_model.dart';
 import 'package:phraso/models/language_model.dart';
-import 'package:phraso/models/top_model.dart';
 import 'package:phraso/router/state_notifier.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-
 import '../features/auth/pages/login_page.dart';
 import '../features/auth/pages/register_page.dart';
 import '../features/auth/repository/auth_repository.dart';
@@ -34,6 +32,7 @@ enum AppRoutes {
   phraseSearch,
   itinerary,
   edit_activities,
+  passedTrips,
 }
 
 final routerProvider = riverpod.Provider<GoRouter>((ref) {
@@ -41,6 +40,7 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
   return GoRouter(
     initialLocation: '/',
     debugLogDiagnostics: true,
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges),
     routes: [
       GoRoute(
           path: "/login",
@@ -54,88 +54,97 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
             ),
           ]),
       GoRoute(
-        path: '/',
-        name: AppRoutes.root.name,
-        builder: (context, state) => const RootPage(),
-      ),
-      GoRoute(
-          path: '/languages',
-          name: AppRoutes.languages.name,
-          builder: (context, state) => const Languagepage(),
+          path: '/',
+          name: AppRoutes.root.name,
+          builder: (context, state) => const RootPage(),
           routes: [
             GoRoute(
-                path: 'types_of_phrases/:languageName',
-                name: AppRoutes.types_of_phrases.name,
-                builder: (context, state) {
-                  final LanguageModel languageModel =
-                      state.extra as LanguageModel;
-                  final String languageName =
-                      state.pathParameters['languageName']!;
-
-                  return TypesOfPhrases(
-                    language: languageModel,
-                    languageName: languageName,
-                  );
-                },
+                path: 'languages',
+                name: AppRoutes.languages.name,
+                builder: (context, state) => const Languagepage(),
                 routes: [
                   GoRoute(
-                    path: 'search/:langId',
-                    name: AppRoutes.phraseSearch.name,
-                    builder: (context, state) {
-                      final String langId = state.pathParameters['langId']!;
-                      return PhraseSearchPage(langId: langId);
-                    },
+                      path: 'types_of_phrases/:languageName',
+                      name: AppRoutes.types_of_phrases.name,
+                      builder: (context, state) {
+                        final LanguageModel languageModel =
+                            state.extra as LanguageModel;
+                        final String languageName =
+                            state.pathParameters['languageName']!;
+
+                        return TypesOfPhrases(
+                          language: languageModel,
+                          languageName: languageName,
+                        );
+                      },
+                      routes: [
+                        GoRoute(
+                          path: 'search/:langId',
+                          name: AppRoutes.phraseSearch.name,
+                          builder: (context, state) {
+                            final String langId =
+                                state.pathParameters['langId']!;
+                            return PhraseSearchPage(langId: langId);
+                          },
+                        )
+                      ]),
+                  GoRoute(
+                    path: 'search',
+                    name: AppRoutes.languageSearch.name,
+                    pageBuilder: (context, state) => MaterialPage(
+                      key: state.pageKey,
+                      fullscreenDialog: true,
+                      child: const LanguageSearchPage(),
+                    ),
                   )
                 ]),
             GoRoute(
-              path: 'search',
-              name: AppRoutes.languageSearch.name,
-              pageBuilder: (context, state) => MaterialPage(
-                key: state.pageKey,
-                fullscreenDialog: true,
-                child: const LanguageSearchPage(),
-              ),
-            )
-          ]),
-      GoRoute(
-          path: '/planner',
-          name: AppRoutes.planner.name,
-          builder: (context, state) => const Plannerpage(),
-          routes: [
-            GoRoute(
-              path: 'addTrip',
-              name: AppRoutes.addTrip.name,
-              builder: (context, state) {
-                return const CreateTrip();
-              },
-            ),
-            GoRoute(
-                path: ':itineraryId',
-                name: AppRoutes.itinerary.name,
-                builder: (context, state) {
-                  state.pathParameters['itineraryId']!;
-
-                  return PlannedDaysPage(
-                      itineraryModel: state.extra as ItineraryModel);
-                },
+                path: 'planner',
+                name: AppRoutes.planner.name,
+                builder: (context, state) => const Plannerpage(),
                 routes: [
                   GoRoute(
-                    path: ':day_id',
-                    name: AppRoutes.edit_activities.name,
+                    path: 'passedTrips',
+                    name: AppRoutes.passedTrips.name,
+                    builder: (context, state) => const PastTripsPage(),
+                  ),
+                  GoRoute(
+                    path: 'addTrip',
+                    name: AppRoutes.addTrip.name,
                     builder: (context, state) {
-                      final String? day_id = state.pathParameters['day_id']!;
-
-                      final String? tripId =
-                          state.pathParameters['itineraryId']!;
-
-                      final DateTime dayDate = state.extra as DateTime;
-
-                      return AddActivitiesPage(
-                          tripId: tripId!, day_id: day_id!, dayDate: dayDate);
+                      return const CreateTrip();
                     },
-                  )
-                ])
-          ])
+                  ),
+                  GoRoute(
+                      path: ':itineraryId',
+                      name: AppRoutes.itinerary.name,
+                      builder: (context, state) {
+                        final String tripId =
+                            state.pathParameters['itineraryId']!;
+                        return PlannedDaysPage(tripId: tripId);
+                      },
+                      routes: [
+                        GoRoute(
+                          path: ':day_id',
+                          name: AppRoutes.edit_activities.name,
+                          builder: (context, state) {
+                            final String? day_id =
+                                state.pathParameters['day_id']!;
+
+                            final String? tripId =
+                                state.pathParameters['itineraryId']!;
+
+                            final DateTime dayDate = state.extra as DateTime;
+
+                            return AddActivitiesPage(
+                                tripId: tripId!,
+                                day_id: day_id!,
+                                dayDate: dayDate);
+                          },
+                        )
+                      ])
+                ]),
+          ]),
     ],
     redirect: (context, state) async {
       final User? session = Supabase.instance.client.auth.currentUser;
@@ -162,6 +171,5 @@ final routerProvider = riverpod.Provider<GoRouter>((ref) {
 
       return isAuth ? null : '/';
     },
-    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges),
   );
 });

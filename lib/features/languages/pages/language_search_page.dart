@@ -26,6 +26,7 @@ class LanguageSearchPage extends ConsumerWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Search Results: $query",
@@ -36,13 +37,18 @@ class LanguageSearchPage extends ConsumerWidget {
                 : Expanded(
                     child: ref.watch(getSearchResultsProvider(query)).when(
                           data: (result) {
-                            return ListView.builder(
-                              itemCount: result.length,
-                              itemBuilder: (context, index) {
-                                final singleResult = result[index];
-                                return LanguageTile(language: singleResult);
-                              },
-                            );
+                            return result.isEmpty
+                                ? const Center(
+                                    child: Text("No result Found"),
+                                  )
+                                : ListView.builder(
+                                    itemCount: result.length,
+                                    itemBuilder: (context, index) {
+                                      final singleResult = result[index];
+                                      return LanguageTile(
+                                          language: singleResult);
+                                    },
+                                  );
                           },
                           error: (error, stackTrace) {
                             return Center(

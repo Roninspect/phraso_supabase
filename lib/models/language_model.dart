@@ -13,7 +13,6 @@ class LanguageModel {
   String background;
   String color;
   String textColor;
-  num numberOfPhrases;
   LanguageModel({
     required this.id,
     required this.languageName,
@@ -21,7 +20,6 @@ class LanguageModel {
     required this.background,
     required this.color,
     required this.textColor,
-    required this.numberOfPhrases,
   });
 
   LanguageModel copyWith({
@@ -31,7 +29,6 @@ class LanguageModel {
     String? background,
     String? color,
     String? textColor,
-    num? numberOfPhrases,
   }) {
     return LanguageModel(
       id: id ?? this.id,
@@ -40,7 +37,6 @@ class LanguageModel {
       background: background ?? this.background,
       color: color ?? this.color,
       textColor: textColor ?? this.textColor,
-      numberOfPhrases: numberOfPhrases ?? this.numberOfPhrases,
     );
   }
 
@@ -48,11 +44,10 @@ class LanguageModel {
     return <String, dynamic>{
       'id': id,
       'languageName': languageName,
-      'flags': flags.map((x) => x.toMap()).toList(),
+      // 'flags': flags.map((x) => x.toMap()).toList(),
       'background': background,
       'color': color,
       'textColor': textColor,
-      'numberOfPhrases': numberOfPhrases,
     };
   }
 
@@ -68,7 +63,6 @@ class LanguageModel {
       background: map['background'] as String,
       color: map['color'] as String,
       textColor: map['textColor'] as String,
-      numberOfPhrases: map['numberOfPhrases'] as num,
     );
   }
 
@@ -79,7 +73,7 @@ class LanguageModel {
 
   @override
   String toString() {
-    return 'LanguageModel(id: $id, languageName: $languageName, flags: $flags, background: $background, color: $color, textColor: $textColor, numberOfPhrases: $numberOfPhrases)';
+    return 'LanguageModel(id: $id, languageName: $languageName, flags: $flags, background: $background, color: $color, textColor: $textColor)';
   }
 
   @override
@@ -91,8 +85,7 @@ class LanguageModel {
         listEquals(other.flags, flags) &&
         other.background == background &&
         other.color == color &&
-        other.textColor == textColor &&
-        other.numberOfPhrases == numberOfPhrases;
+        other.textColor == textColor;
   }
 
   @override
@@ -102,7 +95,6 @@ class LanguageModel {
         flags.hashCode ^
         background.hashCode ^
         color.hashCode ^
-        textColor.hashCode ^
-        numberOfPhrases.hashCode;
+        textColor.hashCode;
   }
 }

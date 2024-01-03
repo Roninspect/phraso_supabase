@@ -36,7 +36,12 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
       final selectedImage = await pickImage();
 
       setState(() {
-        image = selectedImage;
+        if (selectedImage != null) {
+          image = selectedImage;
+          print(selectedImage.path);
+        } else {
+          print('No image selected.');
+        }
       });
     } catch (e) {
       throw e.toString();
@@ -81,8 +86,8 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-         automaticallyImplyLeading: false,
-            leading: const CustomBackButton(),
+        automaticallyImplyLeading: false,
+        leading: const CustomBackButton(),
         backgroundColor: yellowColor,
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(4.0),
@@ -117,9 +122,12 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
                       ],
                     ),
                     image != null
-                        ? Center(
-                            child: Image.file(
-                              File(image!.path),
+                        ? GestureDetector(
+                            onTap: () => selectImage(),
+                            child: Center(
+                              child: Image.file(
+                                File(image!.path),
+                              ),
                             ),
                           )
                         : Center(
@@ -136,12 +144,11 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
                       padding: const EdgeInsets.all(10),
                       child: TextField(
                         controller: itineraryNameController,
-                         maxLength: 18,
+                        maxLength: 18,
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Itinerary Name',
                           hintText: "Trip to Paris...",
-                          
                         ),
                       ),
                     ),

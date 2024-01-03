@@ -4,7 +4,7 @@ import 'package:flutter_vector_icons/flutter_vector_icons.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:phraso/core/colors/colors.dart';
 import '../../../core/constants/tab_widgets.dart';
-import '../provider/nav_controller.dart';
+import '../controller/nav_controller.dart';
 
 class RootPage extends ConsumerStatefulWidget {
   const RootPage({super.key});
@@ -19,13 +19,14 @@ class _RootPageState extends ConsumerState<RootPage> {
   @override
   void initState() {
     super.initState();
-    _pageController = PageController(initialPage: 0);
+    _pageController = PageController(
+      initialPage: 0,
+    );
   }
 
   @override
   void dispose() {
     _pageController.dispose();
-
     super.dispose();
   }
 
@@ -34,11 +35,11 @@ class _RootPageState extends ConsumerState<RootPage> {
     final index = ref.watch(navNotifierProvider);
     return Scaffold(
       body: PageView(
-        controller: _pageController,
-        children: TabWidgets.tabwidgets,
-        onPageChanged: (value) =>
-            ref.read(navNotifierProvider.notifier).navStateChange(value),
-      ),
+          controller: _pageController,
+          children: TabWidgets.tabwidgets,
+          onPageChanged: (value) {
+            ref.read(navNotifierProvider.notifier).navStateChange(value);
+          }),
       bottomNavigationBar: Container(
         height: 85,
         color: backgroundColor,
@@ -73,10 +74,8 @@ class _RootPageState extends ConsumerState<RootPage> {
             ],
             selectedIndex: index,
             onTabChange: (value) {
-              _pageController.animateToPage(value,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.fastOutSlowIn);
               ref.read(navNotifierProvider.notifier).navStateChange(value);
+              _pageController.jumpToPage(value);
             },
           ),
         ),
