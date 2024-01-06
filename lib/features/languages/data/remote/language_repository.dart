@@ -18,13 +18,27 @@ class LanguageRepository {
   //* get all languages
   Future<List<LanguageModel>> getAllLanguage() async {
     try {
-      print('called');
+      print('from remote');
       final List<dynamic> res =
           await _client.from('languages').select('*, flags(*)');
       List<LanguageModel> languages =
           res.map((e) => LanguageModel.fromMap(e)).toList();
 
       return languages;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  //* get all languages count
+  Future<int> getlanguagesCount() async {
+    try {
+      final res = await _client
+          .from('languages')
+          .select('*')
+          .count(supabase.CountOption.exact);
+
+      return res.count;
     } catch (e) {
       throw e.toString();
     }
@@ -68,10 +82,10 @@ class LanguageRepository {
       {required String uid, required String langId}) async {
     final res = await _client
         .from('followings')
-        .select('uid, lang_id',
-            const supabase.FetchOptions(count: supabase.CountOption.exact))
+        .select('uid, lang_id')
         .eq('uid', uid)
-        .eq('lang_id', langId);
+        .eq('lang_id', langId)
+        .count(supabase.CountOption.exact);
 
     int count = res.count;
 

@@ -79,15 +79,11 @@ class PhrasesRepository {
     try {
       final res = await _client
           .from('favourites')
-          .select(
-            'uid, langId',
-            const supabase.FetchOptions(
-              count: supabase.CountOption.exact,
-            ),
-          )
+          .select('uid, langId')
           .eq('uid', uid)
           .eq('phraseId', phraseId)
-          .eq('langId', langId);
+          .eq('langId', langId)
+          .count(supabase.CountOption.exact);
 
       int count = res.count;
 

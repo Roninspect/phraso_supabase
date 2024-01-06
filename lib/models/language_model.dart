@@ -55,11 +55,13 @@ class LanguageModel {
     return LanguageModel(
       id: map['id'] as String,
       languageName: map['languageName'] as String,
-      flags: List<Flags>.from(
-        (map['flags'] as List<dynamic>).map<Flags>(
-          (x) => Flags.fromMap(x as Map<String, dynamic>),
-        ),
-      ),
+      flags: map['flags'] == null
+          ? []
+          : List<Flags>.from(
+              (map['flags'] as List<dynamic>).map<Flags>(
+                (x) => Flags.fromMap(x as Map<String, dynamic>),
+              ),
+            ),
       background: map['background'] as String,
       color: map['color'] as String,
       textColor: map['textColor'] as String,

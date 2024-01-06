@@ -78,16 +78,18 @@ class AuthRepository {
   //* google sign-in method
   FutureVoid signInWithGoogle() async {
     try {
+      /// Web Client ID that you registered with Google Cloud.
+      /// This will be used to perform Google sign in on Android.
+      const webClientId =
+          '631458358877-ga1184oot3gnqb6bveinbmeltjathoe5.apps.googleusercontent.com';
+
+      /// iOS Client ID that you registered with Google Cloud.
       const iosClientId =
           '631458358877-levthnstcok54i20vsro9qufkv70m7ic.apps.googleusercontent.com';
-      // const googleClientId =
-      //     "631458358877-ga1184oot3gnqb6bveinbmeltjathoe5.apps.googleusercontent.com";
-
-      // Google sign in on Android will work without providing the Android
-      // Client ID registered on Google Cloud.
 
       final GoogleSignIn googleSignIn = GoogleSignIn(
         clientId: iosClientId,
+        serverClientId: webClientId,
       );
       final googleUser = await googleSignIn.signIn();
       final googleAuth = await googleUser!.authentication;
@@ -100,11 +102,21 @@ class AuthRepository {
       if (idToken == null) {
         throw 'No ID Token found.';
       }
-      return right(await _client.auth.signInWithIdToken(
-        provider: supabase.Provider.google,
+      final response = await _client.auth.signInWithIdToken(
+        provider: supabase.OAuthProvider.google,
         idToken: idToken,
         accessToken: accessToken,
-      ));
+      );
+
+      final supabase.User user = response.user!;
+
+      final userModel = UserModel(
+          username: googleUser.displayName!,
+          email: user.email!,
+          profile: googleUser.photoUrl!,
+          id: user.id);
+
+      return right(await _client.from('users').insert(userModel.toMap()));
     } catch (e) {
       return left(Failure(e.toString()));
     }
@@ -114,7 +126,7 @@ class AuthRepository {
     try {
       final snap = await _client
           .from('users')
-          .select<List<Map<String, dynamic>>>("id, username, email, profile")
+          .select("id, username, email, profile")
           .eq('id', id);
 
       // Print the retrieved map for debugging

@@ -87,18 +87,18 @@ class LanguageController extends StateNotifier<bool> {
     try {
       ConnectivityStatus connectivityStatus =
           _ref.watch(connectionStateNotifierProvider);
-      final List<LanguageModel> isAllLanguageAvailable =
-          await _localLanguageRepository.getAllLocalLanguages();
 
       if (connectivityStatus == ConnectivityStatus.isConnected) {
-        if (isAllLanguageAvailable.isEmpty) {
+        final count = await _languageRepository.getlanguagesCount();
+
+        final localCount = await _localLanguageRepository.getLanguageCount();
+
+        if (count != localCount) {
           final remoteList = await _languageRepository.getAllLanguage();
 
           await Future.wait(remoteList.map((e) async {
             await _localLanguageRepository.insertSingleLanguage(language: e);
           }));
-
-          return await _localLanguageRepository.getAllLocalLanguages();
         }
         return await _localLanguageRepository.getAllLocalLanguages();
       } else {

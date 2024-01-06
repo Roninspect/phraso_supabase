@@ -55,11 +55,15 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
       firstDate: DateTime.now(),
       lastDate: DateTime(2100),
     );
+    if (_picked != null) {
+      DateTime startDateWithTime =
+          DateTime(_picked.year, _picked.month, _picked.day, 23, 59, 59);
 
-    setState(() {
-      startDate = _picked;
-      startDateController.text = _picked.toString().split(" ")[0];
-    });
+      setState(() {
+        startDate = startDateWithTime;
+        startDateController.text = _picked.toString().split(" ")[0];
+      });
+    }
   }
 
   Future<void> selectEndDate() async {
@@ -71,8 +75,11 @@ class _CreatePlanState extends ConsumerState<CreateTrip> {
         lastDate: DateTime(2100),
       );
 
+      DateTime endDateWithTime =
+          DateTime(_picked!.year, _picked.month, _picked.day, 23, 59, 59);
+
       setState(() {
-        endDate = _picked;
+        endDate = endDateWithTime;
         endDateController.text = _picked.toString().split(" ")[0];
       });
     } else {

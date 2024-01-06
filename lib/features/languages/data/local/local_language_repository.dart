@@ -46,29 +46,13 @@ class LocalLanguageRepository {
     }
   }
 
-  // Future<void> insertSingleFlag({required Flags flag}) async {
-  //   try {
-  //     final db = await _db.db();
-
-  //     await db.insert(
-  //       'flags',
-  //       flag.toMap(),
-  //       conflictAlgorithm: ConflictAlgorithm.replace,
-  //     );
-  //   } catch (e, stk) {
-  //     print(stk);
-  //     throw e.toString();
-  //   }
-  // }
-
   Future<List<LanguageModel>> getAllLocalLanguages() async {
     try {
       final db = await _db.db();
-
       List<Map<String, Object?>> resultList = await db.rawQuery('''
-      SELECT languages.id, languageName, background, color, textColor, flags.id as flag_id, flags.name as flag_name, flags.flag_url
+      SELECT languages.id, languages.languageName, languages.background, languages.color, languages.textColor, flags.id as flag_id, flags.name as flag_name, flags.flag_url
       FROM languages
-      LEFT JOIN flags ON languages.id = flags.lang_id
+      INNER JOIN flags ON languages.id = flags.lang_id
     ''');
 
       print('from local: $resultList');
@@ -100,6 +84,19 @@ class LocalLanguageRepository {
       }
 
       return languageMap.values.toList();
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<int> getLanguageCount() async {
+    try {
+      final db = await _db.db();
+      final List<Map<String, dynamic>> result =
+          await db.rawQuery('SELECT COUNT(*) FROM languages');
+
+      int count = Sqflite.firstIntValue(result) ?? 0;
+      return count;
     } catch (e) {
       throw e.toString();
     }

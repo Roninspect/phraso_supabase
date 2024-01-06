@@ -3,6 +3,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:phraso/core/helper/failure.dart';
 import 'package:phraso/core/helper/typedefs.dart';
 import 'package:phraso/models/activities.dart';
@@ -97,7 +98,6 @@ class PlannerRepository {
           .from('itinerary_members')
           .select('*, itineraries!inner(*)')
           .eq('userId', uid)
-          .eq('itineraries.is_active', true)
           .gte('itineraries.end_date', DateTime.now());
 
       List<ItineraryMember> itineraries =
@@ -116,8 +116,7 @@ class PlannerRepository {
           .from('itinerary_members')
           .select('*, itineraries!inner(*)')
           .eq('userId', uid)
-          .eq('itineraries.is_active', true)
-          .lt('itineraries.end_date', DateTime.now());
+          .lte('itineraries.end_date', DateTime.now());
 
       List<ItineraryMember> itineraries =
           res.map((e) => ItineraryMember.fromMap(e)).toList();

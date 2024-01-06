@@ -71,6 +71,10 @@ class _RootPageState extends ConsumerState<RootPage> {
                 icon: MaterialIcons.article,
                 text: "Blog",
               ),
+              GButton(
+                icon: MaterialIcons.article,
+                text: "Blog",
+              ),
             ],
             selectedIndex: index,
             onTabChange: (value) {

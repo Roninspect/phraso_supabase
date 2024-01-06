@@ -8,5 +8,6 @@ class TabWidgets {
     const Plannerpage(),
     const Languagepage(),
     const Languagepage(),
+    const Languagepage(),
   ];
 }
