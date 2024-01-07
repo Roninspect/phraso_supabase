@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:phraso/core/common/custom_snackbar.dart';
+import 'package:phraso/core/shared/custom_snackbar.dart';
 import 'package:phraso/core/constants/default_background.dart';
 import 'package:phraso/core/helper/image_uploader.dart';
 import 'package:phraso/features/planner/repository/planner_repository.dart';

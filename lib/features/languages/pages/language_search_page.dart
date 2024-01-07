@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/colors/colors.dart';
-import 'package:phraso/core/common/curtom_back_button.dart';
+import 'package:phraso/core/shared/curtom_back_button.dart';
 import 'package:phraso/features/languages/widgets/language_tile.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/loader.dart';
 import 'package:phraso/features/languages/controller/language_controller.dart';
 import 'package:phraso/features/languages/provider/search_query_provider.dart';
 import 'package:phraso/features/languages/widgets/language_search_field.dart';

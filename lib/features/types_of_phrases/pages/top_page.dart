@@ -3,7 +3,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/colors/colors.dart';
-import 'package:phraso/core/common/curtom_back_button.dart';
+import 'package:phraso/core/shared/curtom_back_button.dart';
 import 'package:phraso/core/constants/spacings.dart';
 import 'package:phraso/features/types_of_phrases/widgets/favourtie_tile.dart';
 import 'package:phraso/features/types_of_phrases/widgets/search_phrases._BTN.dart';

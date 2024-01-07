@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
-import 'package:phraso/core/common/custom_snackbar.dart';
+import 'package:phraso/core/shared/custom_snackbar.dart';
 import 'package:phraso/models/itinerary_model.dart';
 import 'package:phraso/router/router.dart';
 import '../../../core/colors/colors.dart';

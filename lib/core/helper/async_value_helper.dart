@@ -1,7 +1,7 @@
 // Generic AsyncValueWidget to work with values of type T
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/loader.dart';
 
 class AsyncValueWidget<T> extends StatelessWidget {
   const AsyncValueWidget({Key? key, required this.value, required this.data})

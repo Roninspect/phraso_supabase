@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/colors/colors.dart';
-import 'package:phraso/core/common/curtom_back_button.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/curtom_back_button.dart';
+import 'package:phraso/core/shared/loader.dart';
 import 'package:phraso/features/phrases/controller/phrases_controller.dart';
 import 'package:phraso/features/phrases/providers/search_query_provider.dart';
 import 'package:phraso/features/phrases/widgets/phrases_tile.dart';

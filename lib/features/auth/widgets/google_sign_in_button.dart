@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/loader.dart';
 
 import '../controller/auth_controller.dart';
 

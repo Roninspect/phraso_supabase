@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../core/common/custom_snackbar.dart';
-import '../../../core/common/error_snackbar.dart';
+import '../../../core/shared/custom_snackbar.dart';
+import '../../../core/shared/error_snackbar.dart';
 import '../../../models/user_model.dart';
 import '../provider/user_data_notifer.dart';
 import '../repository/auth_repository.dart';

@@ -5,9 +5,10 @@ import 'package:phraso/core/colors/colors.dart';
 
 import 'package:phraso/core/constants/spacings.dart';
 import 'package:phraso/core/helper/connection_notifier.dart';
+import 'package:phraso/core/shared/version_provider.dart';
 
 import 'package:phraso/features/auth/provider/user_data_notifer.dart';
-import 'package:phraso/features/languages/data/local/local_language_repository.dart';
+import 'package:phraso/features/languages/repository/local/local_language_repository.dart';
 import 'package:phraso/features/languages/widgets/following_listview.dart';
 
 import 'package:phraso/features/languages/widgets/language_listview.dart';

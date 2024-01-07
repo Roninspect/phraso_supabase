@@ -2,8 +2,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phraso/core/common/curtom_back_button.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/curtom_back_button.dart';
+import 'package:phraso/core/shared/loader.dart';
 import 'package:phraso/features/phrases/widgets/phrases_tile.dart';
 import 'package:phraso/models/top_model.dart';
 import '../../../models/double_argsModel.dart';
@@ -64,7 +64,7 @@ class PhrasesPage extends ConsumerWidget {
                     return PhraseTile(phrasesModel: phrase);
                   },
                 );
-              } else { 
+              } else {
                 return const Center(
                   child: Text("Coming soon"),
                 );

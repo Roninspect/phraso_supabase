@@ -6,7 +6,7 @@ import 'package:phraso/core/helper/async_value_helper.dart';
 import 'package:phraso/features/phrases/controller/phrases_controller.dart';
 import 'package:phraso/features/phrases/widgets/phrases_tile.dart';
 import 'package:phraso/models/favouriteModel.dart';
-import '../../../core/common/curtom_back_button.dart';
+import '../../../core/shared/curtom_back_button.dart';
 
 class FavouritePhrasePage extends ConsumerWidget {
   final String langName;

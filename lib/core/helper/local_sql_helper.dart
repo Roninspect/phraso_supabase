@@ -7,6 +7,7 @@ final sqlHelperProvider = Provider<SqlHelper>((ref) {
 
 class SqlHelper {
   Future<void> createTables(sqflite.Database database) async {
+    // all languages related
     await database.execute("""CREATE TABLE languages(
       id TEXT PRIMARY KEY NOT NULL,
       languageName TEXT,
@@ -39,6 +40,17 @@ class SqlHelper {
     phrase_updated TEXT DEFAULT '50a6fa93-bdd-409a-88f9-73f3f027bd0e_1_1'
   )
 """);
+
+    // all types of phras related
+
+    await database.execute(""" 
+  CREATE TABLE top(
+    id INT PRIMARY KEY NOT NULL,
+    name TEXT,
+    color TEXT,
+    icon TEXT
+  )
+    """);
   }
 
   Future<sqflite.Database> db() async {

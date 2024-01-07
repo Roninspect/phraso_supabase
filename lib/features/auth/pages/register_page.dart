@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/loader.dart';
 import '../../../core/colors/colors.dart';
 import '../../../router/router.dart';
 import '../controller/auth_controller.dart';
@@ -136,7 +136,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                       backgroundColor: darkColor),
                   onPressed: () => validRegister(),
                   child: isLoading
-                      ?  Center(
+                      ? Center(
                           child: loader(),
                         )
                       : const Text(

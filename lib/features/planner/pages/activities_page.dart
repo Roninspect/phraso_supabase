@@ -8,7 +8,7 @@ import 'package:phraso/models/activities.dart';
 import 'package:timelines/timelines.dart';
 
 import 'package:phraso/core/colors/colors.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/loader.dart';
 import 'package:phraso/features/planner/repository/planner_repository.dart';
 import 'package:phraso/router/router.dart';
 

@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:phraso/core/colors/colors.dart';
 import 'package:phraso/core/constants/env.dart';
-import 'package:phraso/features/languages/data/local/local_language_repository.dart';
+import 'package:phraso/features/languages/repository/local/local_language_repository.dart';
 import 'package:phraso/models/version.dart';
 import 'package:phraso/router/router.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';

@@ -6,8 +6,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
 import 'package:phraso/core/colors/colors.dart';
-import 'package:phraso/core/common/curtom_back_button.dart';
-import 'package:phraso/core/common/loader.dart';
+import 'package:phraso/core/shared/curtom_back_button.dart';
+import 'package:phraso/core/shared/loader.dart';
 import 'package:phraso/core/constants/spacings.dart';
 import 'package:phraso/features/planner/controller/planner_controller.dart';
 import 'package:phraso/features/planner/repository/planner_repository.dart';

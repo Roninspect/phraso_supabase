@@ -2,9 +2,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:phraso/core/helper/connection_notifier.dart';
-import 'package:phraso/features/languages/data/local/local_language_repository.dart';
+import 'package:phraso/core/shared/version_provider.dart';
+import 'package:phraso/features/languages/repository/local/local_language_repository.dart';
 import 'package:phraso/features/languages/provider/search_query_provider.dart';
-import 'package:phraso/features/languages/data/remote/language_repository.dart';
+import 'package:phraso/features/languages/repository/remote/remote_language_repository.dart';
 import 'package:phraso/models/following_model.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
@@ -15,6 +16,7 @@ final languageControllerProvider =
   return LanguageController(
     languageRepository: ref.watch(languageRepositroyProvider),
     localLanguageRepository: ref.watch(localLanguageRepositoryProvider),
+    versionRepository: ref.watch(versionRepositoryProvider),
     ref: ref,
   );
 });
@@ -67,15 +69,18 @@ final isFollowingAlreadyProvider =
 //* Language Controller Class
 
 class LanguageController extends StateNotifier<bool> {
-  final LanguageRepository _languageRepository;
+  final RemoteLanguageRepository _languageRepository;
   final LocalLanguageRepository _localLanguageRepository;
+  final VersionRepository _versionRepository;
   final Ref _ref;
   LanguageController(
-      {required LanguageRepository languageRepository,
+      {required RemoteLanguageRepository languageRepository,
       required LocalLanguageRepository localLanguageRepository,
+      required VersionRepository versionRepository,
       required Ref ref})
       : _languageRepository = languageRepository,
         _localLanguageRepository = localLanguageRepository,
+        _versionRepository = versionRepository,
         _ref = ref,
         super(false);
 
@@ -89,16 +94,19 @@ class LanguageController extends StateNotifier<bool> {
           _ref.watch(connectionStateNotifierProvider);
 
       if (connectivityStatus == ConnectivityStatus.isConnected) {
-        final remoteVersion = await _languageRepository.getVersion();
-        final localVersion = await _localLanguageRepository.getVersion();
+        final remoteVersion = await _versionRepository.getRemoteVersion();
+        final localVersion = await _versionRepository.getLocalVersion();
 
         if (remoteVersion.langVersion != localVersion.langVersion) {
           final remoteList = await _languageRepository.getAllLanguage();
-          await _localLanguageRepository.insertVersion(version: remoteVersion);
+          await _versionRepository.updateLangVersion(
+              langVersion: remoteVersion.langVersion,
+              versionId: remoteVersion.id);
           _ref.invalidate(getLocalVersionProvider);
           await Future.wait(remoteList.map((e) async {
             await _localLanguageRepository.insertSingleLanguage(language: e);
           }));
+          return await _localLanguageRepository.getAllLocalLanguages();
         }
         // Return the local languages outside of the if block
         return await _localLanguageRepository.getAllLocalLanguages();

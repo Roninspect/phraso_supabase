@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 class TypesOfPhrasesmodel {
   int id;
   String name;
@@ -40,5 +43,30 @@ class TypesOfPhrasesmodel {
       color: map['color'] as String,
       icon: map['icon'] as String,
     );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory TypesOfPhrasesmodel.fromJson(String source) =>
+      TypesOfPhrasesmodel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  @override
+  String toString() {
+    return 'TypesOfPhrasesmodel(id: $id, name: $name, color: $color, icon: $icon)';
+  }
+
+  @override
+  bool operator ==(covariant TypesOfPhrasesmodel other) {
+    if (identical(this, other)) return true;
+
+    return other.id == id &&
+        other.name == name &&
+        other.color == color &&
+        other.icon == icon;
+  }
+
+  @override
+  int get hashCode {
+    return id.hashCode ^ name.hashCode ^ color.hashCode ^ icon.hashCode;
   }
 }

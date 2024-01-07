@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phraso/core/common/custom_snackbar.dart';
+import 'package:phraso/core/shared/custom_snackbar.dart';
 import 'package:phraso/features/phrases/providers/search_query_provider.dart';
 import 'package:phraso/features/phrases/repository/phrases_repository.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
