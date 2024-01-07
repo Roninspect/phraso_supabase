@@ -4,6 +4,7 @@ import 'package:phraso/core/helper/failure.dart';
 import 'package:phraso/core/helper/typedefs.dart';
 import 'package:phraso/models/following_model.dart';
 import 'package:phraso/models/language_model.dart';
+import 'package:phraso/models/version.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as supabase;
 
 final languageRepositroyProvider = Provider<LanguageRepository>((ref) {
@@ -125,6 +126,21 @@ class LanguageRepository {
           res.map((e) => LanguageModel.fromMap(e)).toList();
 
       return results;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<Version> getVersion() async {
+    try {
+      final res = await supabase.Supabase.instance.client
+          .from('version')
+          .select('*')
+          .single();
+
+      final Version version = Version.fromMap(res);
+
+      return version;
     } catch (e) {
       throw e.toString();
     }

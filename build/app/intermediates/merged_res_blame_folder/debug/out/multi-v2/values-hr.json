@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.phrasoo.app-mergeDebugResources-29:/values-hr/values-hr.xml",
+            "outputFile": "com.example.phrasoo.app-mergeDebugResources-28:/values-hr/values-hr.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Administrator\\.gradle\\caches\\transforms-3\\8f9734252a3ea98818fde243f4516436\\transformed\\browser-1.5.0\\res\\values-hr\\values-hr.xml",

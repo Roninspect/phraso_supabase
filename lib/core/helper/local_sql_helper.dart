@@ -1,6 +1,4 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phraso/models/following_model.dart';
-import 'package:phraso/models/language_model.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 
 final sqlHelperProvider = Provider<SqlHelper>((ref) {
@@ -32,6 +30,15 @@ class SqlHelper {
       languages TEXT
     )
     """);
+
+    await database.execute("""
+  CREATE TABLE version(
+    id TEXT PRIMARY KEY NOT NULL DEFAULT '880de450-e904-42d2-9a09-c9d322b9aea7',
+    lang_version INT DEFAULT 0,
+    type_version INT DEFAULT 0,
+    phrase_updated TEXT DEFAULT '50a6fa93-bdd-409a-88f9-73f3f027bd0e_1_1'
+  )
+""");
   }
 
   Future<sqflite.Database> db() async {

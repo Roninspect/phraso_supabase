@@ -39,7 +39,6 @@ INJECTED from G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\m
 INJECTED from G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\main\AndroidManifest.xml:1:1-41:12
 INJECTED from G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\main\AndroidManifest.xml:1:1-41:12
 MERGED from G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\main\AndroidManifest.xml:1:1-41:12
-MERGED from [:sign_in_with_apple] G:\Flutter projects\phraso_supabse\phraso\phraso\build\sign_in_with_apple\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:image_picker_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-21:12
 MERGED from [:flutter_plugin_android_lifecycle] G:\Flutter projects\phraso_supabse\phraso\phraso\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:audioplayers_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\audioplayers_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
@@ -48,7 +47,6 @@ MERGED from [:url_launcher_android] G:\Flutter projects\phraso_supabse\phraso\ph
 MERGED from [:path_provider_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\path_provider_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:google_sign_in_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\google_sign_in_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-11:12
 MERGED from [:connectivity_plus] G:\Flutter projects\phraso_supabse\phraso\phraso\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-11:12
-MERGED from [:webview_flutter_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:shared_preferences_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:app_links] G:\Flutter projects\phraso_supabse\phraso\phraso\build\app_links\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
 MERGED from [:flutter_appauth] G:\Flutter projects\phraso_supabse\phraso\phraso\build\flutter_appauth\intermediates\merged_manifest\debug\AndroidManifest.xml:2:1-9:12
@@ -66,7 +64,6 @@ MERGED from [com.google.android.gms:play-services-basement:18.2.0] C:\Users\Admi
 MERGED from [androidx.fragment:fragment:1.3.4] C:\Users\Administrator\.gradle\caches\transforms-3\65fbcc96a571e904c8e7ad17f927ae0b\transformed\fragment-1.3.4\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.7.2] C:\Users\Administrator\.gradle\caches\transforms-3\09d4de04acafc388e1ede24e8f5fb280\transformed\jetified-activity-1.7.2\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.browser:browser:1.5.0] C:\Users\Administrator\.gradle\caches\transforms-3\8f9734252a3ea98818fde243f4516436\transformed\browser-1.5.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.webkit:webkit:1.7.0] C:\Users\Administrator\.gradle\caches\transforms-3\68a3b6d692650d57ef89e312ce9a3ea2\transformed\webkit-1.7.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\Administrator\.gradle\caches\transforms-3\f177270396aaec6947c894a0ebbf39f5\transformed\jetified-core-ktx-1.10.1\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\1c88c1c284ea42c4e2bf0641b483d373\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.window:window:1.0.0-beta04] C:\Users\Administrator\.gradle\caches\transforms-3\6bdbce6d724577b6a2ebf443348d3e9e\transformed\jetified-window-1.0.0-beta04\AndroidManifest.xml:17:1-33:12
@@ -88,8 +85,8 @@ MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\Administrator\
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\Administrator\.gradle\caches\transforms-3\22aa107c97d12032a69d51796273402d\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:17:1-55:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\6c3b7a3432cd99b1b7ffc728a4629b88\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\db276043bdf800f6f97b79d44c1b236d\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\87b2ae983714ee2f18bf7ed65b55f543\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\83104c5d9e9017716bdf52aa81e39266\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\87b2ae983714ee2f18bf7ed65b55f543\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\7ee5945d2eddb33e59d2ea4d942ad7f1\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Administrator\.gradle\caches\transforms-3\1dd9985ad3ebebecfb5a243ce6115dbb\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [org.microg:safe-parcel:1.7.0] C:\Users\Administrator\.gradle\caches\transforms-3\f4950c74ded814e7585bc867f310f140\transformed\jetified-safe-parcel-1.7.0\AndroidManifest.xml:6:1-14:12
@@ -115,8 +112,6 @@ uses-sdk
 INJECTED from G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\main\AndroidManifest.xml
 INJECTED from G:\Flutter projects\phraso_supabse\phraso\phraso\android\app\src\main\AndroidManifest.xml
-MERGED from [:sign_in_with_apple] G:\Flutter projects\phraso_supabse\phraso\phraso\build\sign_in_with_apple\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:sign_in_with_apple] G:\Flutter projects\phraso_supabse\phraso\phraso\build\sign_in_with_apple\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:image_picker_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:image_picker_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\image_picker_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:flutter_plugin_android_lifecycle] G:\Flutter projects\phraso_supabse\phraso\phraso\build\flutter_plugin_android_lifecycle\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
@@ -133,8 +128,6 @@ MERGED from [:google_sign_in_android] G:\Flutter projects\phraso_supabse\phraso\
 MERGED from [:google_sign_in_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\google_sign_in_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:connectivity_plus] G:\Flutter projects\phraso_supabse\phraso\phraso\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:connectivity_plus] G:\Flutter projects\phraso_supabse\phraso\phraso\build\connectivity_plus\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:webview_flutter_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
-MERGED from [:webview_flutter_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\webview_flutter_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:shared_preferences_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:shared_preferences_android] G:\Flutter projects\phraso_supabse\phraso\phraso\build\shared_preferences_android\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
 MERGED from [:app_links] G:\Flutter projects\phraso_supabse\phraso\phraso\build\app_links\intermediates\merged_manifest\debug\AndroidManifest.xml:5:5-7:41
@@ -169,8 +162,6 @@ MERGED from [androidx.activity:activity:1.7.2] C:\Users\Administrator\.gradle\ca
 MERGED from [androidx.activity:activity:1.7.2] C:\Users\Administrator\.gradle\caches\transforms-3\09d4de04acafc388e1ede24e8f5fb280\transformed\jetified-activity-1.7.2\AndroidManifest.xml:20:5-44
 MERGED from [androidx.browser:browser:1.5.0] C:\Users\Administrator\.gradle\caches\transforms-3\8f9734252a3ea98818fde243f4516436\transformed\browser-1.5.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.browser:browser:1.5.0] C:\Users\Administrator\.gradle\caches\transforms-3\8f9734252a3ea98818fde243f4516436\transformed\browser-1.5.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.webkit:webkit:1.7.0] C:\Users\Administrator\.gradle\caches\transforms-3\68a3b6d692650d57ef89e312ce9a3ea2\transformed\webkit-1.7.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.webkit:webkit:1.7.0] C:\Users\Administrator\.gradle\caches\transforms-3\68a3b6d692650d57ef89e312ce9a3ea2\transformed\webkit-1.7.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\Administrator\.gradle\caches\transforms-3\f177270396aaec6947c894a0ebbf39f5\transformed\jetified-core-ktx-1.10.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-ktx:1.10.1] C:\Users\Administrator\.gradle\caches\transforms-3\f177270396aaec6947c894a0ebbf39f5\transformed\jetified-core-ktx-1.10.1\AndroidManifest.xml:5:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\1c88c1c284ea42c4e2bf0641b483d373\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
@@ -213,10 +204,10 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Administrator\.gra
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\6c3b7a3432cd99b1b7ffc728a4629b88\transformed\jetified-startup-runtime-1.1.1\AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\db276043bdf800f6f97b79d44c1b236d\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\db276043bdf800f6f97b79d44c1b236d\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\87b2ae983714ee2f18bf7ed65b55f543\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\87b2ae983714ee2f18bf7ed65b55f543\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\83104c5d9e9017716bdf52aa81e39266\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\83104c5d9e9017716bdf52aa81e39266\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\87b2ae983714ee2f18bf7ed65b55f543\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\Administrator\.gradle\caches\transforms-3\87b2ae983714ee2f18bf7ed65b55f543\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\7ee5945d2eddb33e59d2ea4d942ad7f1\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\Administrator\.gradle\caches\transforms-3\7ee5945d2eddb33e59d2ea4d942ad7f1\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\Administrator\.gradle\caches\transforms-3\1dd9985ad3ebebecfb5a243ce6115dbb\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44

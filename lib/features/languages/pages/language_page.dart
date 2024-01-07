@@ -7,6 +7,7 @@ import 'package:phraso/core/constants/spacings.dart';
 import 'package:phraso/core/helper/connection_notifier.dart';
 
 import 'package:phraso/features/auth/provider/user_data_notifer.dart';
+import 'package:phraso/features/languages/data/local/local_language_repository.dart';
 import 'package:phraso/features/languages/widgets/following_listview.dart';
 
 import 'package:phraso/features/languages/widgets/language_listview.dart';
@@ -60,10 +61,23 @@ class _LanguagepageState extends ConsumerState<Languagepage>
               GestureDetector(
                 onTap: () async =>
                     await supabase.Supabase.instance.client.auth.signOut(),
-                child: Text(
-                  greetingText,
-                  style: const TextStyle(fontSize: 20, color: greyColor),
-                ),
+                child: ref.watch(getLocalVersionProvider).when(
+                      data: (version) {
+                        print(version);
+                        return Text(
+                          version.langVersion.toString(),
+                          style:
+                              const TextStyle(fontSize: 20, color: greyColor),
+                        );
+                      },
+                      error: (error, stackTrace) {
+                        print(stackTrace);
+                        return Text(
+                          error.toString(),
+                        );
+                      },
+                      loading: () => CircularProgressIndicator(),
+                    ),
               ),
               Text(
                 userName,

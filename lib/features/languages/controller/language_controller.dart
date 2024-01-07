@@ -1,8 +1,6 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:phraso/core/common/custom_snackbar.dart';
 import 'package:phraso/core/helper/connection_notifier.dart';
 import 'package:phraso/features/languages/data/local/local_language_repository.dart';
 import 'package:phraso/features/languages/provider/search_query_provider.dart';
@@ -83,25 +81,29 @@ class LanguageController extends StateNotifier<bool> {
 
   final uid = supabase.Supabase.instance.client.auth.currentUser!.id;
 
+  //* getting data from repsoitory either local or remote
+
   Future<List<LanguageModel>> getAllLanguage() async {
     try {
       ConnectivityStatus connectivityStatus =
           _ref.watch(connectionStateNotifierProvider);
 
       if (connectivityStatus == ConnectivityStatus.isConnected) {
-        final count = await _languageRepository.getlanguagesCount();
+        final remoteVersion = await _languageRepository.getVersion();
+        final localVersion = await _localLanguageRepository.getVersion();
 
-        final localCount = await _localLanguageRepository.getLanguageCount();
-
-        if (count != localCount) {
+        if (remoteVersion.langVersion != localVersion.langVersion) {
           final remoteList = await _languageRepository.getAllLanguage();
-
+          await _localLanguageRepository.insertVersion(version: remoteVersion);
+          _ref.invalidate(getLocalVersionProvider);
           await Future.wait(remoteList.map((e) async {
             await _localLanguageRepository.insertSingleLanguage(language: e);
           }));
         }
+        // Return the local languages outside of the if block
         return await _localLanguageRepository.getAllLocalLanguages();
       } else {
+        // Return the local languages directly in the else block
         return await _localLanguageRepository.getAllLocalLanguages();
       }
     } catch (e) {
